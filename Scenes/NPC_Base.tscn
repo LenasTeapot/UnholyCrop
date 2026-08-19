@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctypxhpm4e4v2"]
+
+[ext_resource type="Script" uid="uid://cgfojyre0x6n6" path="res://Scripts/AI_Base.gd" id="1_b04lc"]
+[ext_resource type="Texture2D" uid="uid://cu6b6fu4earaj" path="res://Sprites/GameBoyCharactersSprites.png" id="1_x2sh7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b04lc"]
+atlas = ExtResource("1_x2sh7")
+region = Rect2(130, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwyvj"]
+atlas = ExtResource("1_x2sh7")
+region = Rect2(49, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qog2l"]
+atlas = ExtResource("1_x2sh7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mf2j"]
+atlas = ExtResource("1_x2sh7")
+region = Rect2(35, 0, 10, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b04lc"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bb12"]
+resource_local_to_scene = true
+atlas = ExtResource("1_x2sh7")
+region = Rect2(130, 0, 12, 16)
+
+[node name="NPC" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_b04lc")
+min_max_speed = Vector2(30, 70)
+choices = Array[AtlasTexture]([SubResource("AtlasTexture_b04lc"), SubResource("AtlasTexture_rwyvj"), SubResource("AtlasTexture_qog2l"), SubResource("AtlasTexture_6mf2j")])
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, -8)
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_b04lc")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 4.0
+simplify_path = true
+avoidance_enabled = true
+radius = 8.0
+neighbor_distance = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_0bb12")

@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://cohc2a3m0wc36"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_o4p23"]
+[ext_resource type="PackedScene" uid="uid://i2l3hoavv6sw" path="res://Scenes/ui_inventory_item.tscn" id="2_r6pni"]
+[ext_resource type="Resource" uid="uid://ywcpk4k2lxt0" path="res://Resources/Item_Corn.tres" id="3_c5rk8"]
+[ext_resource type="Resource" uid="uid://cg2qmbr3r1f0p" path="res://Resources/Item_Tomato.tres" id="4_578bi"]
+[ext_resource type="Resource" uid="uid://bbnrgm4x41rmb" path="res://Resources/Item_Turnip.tres" id="5_ptqgb"]
+[ext_resource type="Resource" uid="uid://bquk0pd3nwd38" path="res://Resources/Item_Villager.tres" id="6_dhrvo"]
+[ext_resource type="Resource" uid="uid://cdhxrj2bdholy" path="res://Resources/Item_Mushroom.tres" id="7_578bi"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="7_r6pni"]
+[ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="8_c5rk8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5rk8"]
+atlas = ExtResource("7_r6pni")
+region = Rect2(145, 95, 15, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6pni"]
+atlas = ExtResource("7_r6pni")
+region = Rect2(176, 96, 15, 11)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 416.0
+offset_bottom = 32.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = -240.0
+offset_right = -112.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o4p23")
+region_rect = Rect2(1, 1, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 6
+text = "The Holy Day is approaching."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI_Inventory" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o4p23")
+region_rect = Rect2(25, 1, 22, 22)
+patch_margin_left = 7
+patch_margin_top = 8
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_Inventory/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Item" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+
+[node name="Item2" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+item = ExtResource("3_c5rk8")
+
+[node name="Item3" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+item = ExtResource("4_578bi")
+
+[node name="Item4" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+item = ExtResource("5_ptqgb")
+
+[node name="Item6" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+item = ExtResource("7_578bi")
+
+[node name="Item5" parent="UI_Inventory/MarginContainer/HBoxContainer" instance=ExtResource("2_r6pni")]
+layout_mode = 2
+item = ExtResource("6_dhrvo")
+
+[node name="ToggleButton" type="TextureButton" parent="UI_Inventory/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_c5rk8")
+texture_pressed = SubResource("AtlasTexture_r6pni")
+stretch_mode = 3
+script = ExtResource("8_c5rk8")
+signal_name = "toggle_quest_ui"

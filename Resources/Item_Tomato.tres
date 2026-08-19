@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ItemData_Crop" load_steps=12 format=3 uid="uid://cg2qmbr3r1f0p"]
+
+[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="1_g62nq"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_v6anp"]
+[ext_resource type="Resource" uid="uid://dec8qqbtlped5" path="res://Resources/Season_Spring.tres" id="2_7rlth"]
+[ext_resource type="Resource" uid="uid://dfe5ojpv5e5hn" path="res://Resources/Season_Summer.tres" id="3_7lxgy"]
+[ext_resource type="Resource" uid="uid://86fdvib5e3nm" path="res://Resources/Season_Autumn.tres" id="4_675ag"]
+[ext_resource type="Resource" uid="uid://goni4x1f5hyo" path="res://Resources/Season_Winter.tres" id="5_yv7o2"]
+[ext_resource type="Script" uid="uid://8qfwkf53lu71" path="res://Scripts/ItemData_Crop.gd" id="7_qx7rf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g62nq"]
+atlas = ExtResource("1_v6anp")
+region = Rect2(68, 56, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rlth"]
+atlas = ExtResource("1_v6anp")
+region = Rect2(83, 52, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lxgy"]
+atlas = ExtResource("1_v6anp")
+region = Rect2(98, 49, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw6mk"]
+atlas = ExtResource("1_v6anp")
+region = Rect2(130, 50, 12, 12)
+
+[resource]
+script = ExtResource("7_qx7rf")
+growth_time = 4
+growth_modifiers = Dictionary[ExtResource("1_g62nq"), float]({
+ExtResource("2_7rlth"): 1.0,
+ExtResource("3_7lxgy"): 1.0,
+ExtResource("4_675ag"): 0.8,
+ExtResource("5_yv7o2"): 0.5
+})
+growth_icons = Array[AtlasTexture]([SubResource("AtlasTexture_g62nq"), SubResource("AtlasTexture_7rlth"), SubResource("AtlasTexture_7lxgy")])
+item_name = "Tomato"
+description = "This is a tomato."
+icon = SubResource("AtlasTexture_lw6mk")
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

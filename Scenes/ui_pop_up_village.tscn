@@ -1,0 +1,145 @@
+[gd_scene load_steps=6 format=3 uid="uid://2s7pk1cm8xgc"]
+
+[ext_resource type="PackedScene" uid="uid://dh68dtcbepifl" path="res://Scenes/ui_pop_up.tscn" id="1_vxq5f"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="2_7xyxx"]
+[ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="2_exwer"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exwer"]
+atlas = ExtResource("2_7xyxx")
+region = Rect2(24, 1, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxq5f"]
+atlas = ExtResource("2_7xyxx")
+region = Rect2(1, 1, 22, 22)
+
+[node name="UI_PopUp" instance=ExtResource("1_vxq5f")]
+offset_top = -80.0
+offset_bottom = -190.0
+
+[node name="TextureButton" parent="MarginContainer" index="0"]
+script = ExtResource("2_exwer")
+signal_name = "close_pop_up"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" index="0"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/AspectRatioContainer" index="0"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_exwer")
+region_rect = Rect2(0, 0, 24, 23)
+patch_margin_left = 7
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
+mouse_filter = 2
+theme_override_constants/margin_top = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Hello. I am a horse. I work very hard at my job of being a horse. When humans say move the heavy thing, I move the heavy thing. When humans sit on top of me and pull on my head, I carry them where they want to go. The main food the humans give me is hay and oats. But I am thinking it would be nice to have a different food.
+
+I am thinking I would like to try cake.
+
+Yes, yes. Cake. I know all about it. When humans eat cake, it is in glad times. It is the food for a celebration, such as when a woman becomes 47. I have seen cake on the Fourth of July. When humans have a cake, they stand around it and clap hands and smile and say happy birthday at each other. Sometimes there are beautiful markings on a cake, such as balloons or a pink shape.
+
+Sometimes the top of a cake is on fire and a boy must blow on the fire with mouth wind. This is the scariest cake. I do not want this kind. But I will eat any other cake. Any cake that is not the fire cake that tries to kill the boy.
+
+Please understand: I do not get money for doing work. I do not get to go inside the house. All day I am either doing my horse job or standing in my pen or eating food off the floor. I always do these things. But I have never once gotten cake and I would like it very much.
+
+I have noticed that human children get to eat cake. But I am bigger than the children. I am more helpful to the farm. Children do not move the heavy things like me or let anyone ride on them. And yet they get cake. Maybe the humans will realize this. Maybe they will say, “You know who deserves cake? That horse. That horse whose back we are always on.”
+
+Every day I dream about what it will be like if I get to eat cake. Here is what will happen. First, I will walk to the cake and puff my nose at it like hrrrfff to make sure it is not a snake. Then I will trot in a circle to show that I am a horse and I am large. After that, I will nuzzle the cake to know it with my face. Then I will lick the colorful top part and touch it with my lips. Finally, I will bite the cake and have the taste of its inner softness. I will chew and say prrt prrt because I am happy, and everybody will clap hands and smile and say happy birthday at each other.
+
+I cannot think of a more glad time. So, please, give me cake.
+
+Of the eight tastes I know about, I think cake probably tastes most like medicine and mud. I’m getting hungry just thinking about it. There is a fly standing on my eyeball but I don’t even care because all I can think about is cake and wanting it badly. I already weigh 2,000 pounds from eating hay and oats. I do not want more of that now. There is only one thing I want. You know what it is.
+
+So you see, it is clear that you must give me cake. I am a nice horse. I do not fuss. I do not bite the human woman’s face, even though her hair smells nice. I do not ask to go live free in the woods like the deer. I do my duties. I must try cake. Please.
+
+Hnnnnnnn. Heeeee-huh-heeee! Just give me the cake.
+
+Please. I am begging you. I am showing you my teeth and stomping my hooves so you know that I want the cake. Prrrrrft! Prrrrrft! I must have it, do you see? I am standing on my back legs and screaming due to needing the cake. Please, humans. Please. Please! I am a good horse. Hmmrrrr, nrrrrffff! Put a cake on a table right now. I wish with all my heart that you will do this for me. So you must give it to me. Because I am the good horse. I am a good horse and I deserve cake."
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_vxq5f")
+region_rect = Rect2(0, 0, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/NinePatchRect4" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/NinePatchRect4/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "This is a test option"
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_vxq5f")
+region_rect = Rect2(0, 0, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 7
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/NinePatchRect3" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/NinePatchRect3/MarginContainer2" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "This is a test option"

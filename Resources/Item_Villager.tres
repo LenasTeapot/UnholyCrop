@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bquk0pd3nwd38"]
+
+[ext_resource type="Script" uid="uid://bjxdyxdtf6d2a" path="res://Scripts/ItemData.gd" id="1_cf4rb"]
+[ext_resource type="Texture2D" uid="uid://cu6b6fu4earaj" path="res://Sprites/GameBoyCharactersSprites.png" id="1_tpnmi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywmrx"]
+atlas = ExtResource("1_tpnmi")
+region = Rect2(96, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_cf4rb")
+item_name = "Villager"
+description = "Can help with farming."
+icon = SubResource("AtlasTexture_ywmrx")
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

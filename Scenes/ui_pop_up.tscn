@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh68dtcbepifl"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_2o5x3"]
+[ext_resource type="Texture2D" uid="uid://c1litlb2po1lr" path="res://Sprites/UIpackSheet_transparent.png" id="2_g5yus"]
+[ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="3_cbqq6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbqq6"]
+atlas = ExtResource("2_g5yus")
+region = Rect2(487, 109, 14, 14)
+
+[node name="UI_PopUp" type="NinePatchRect"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -95.0
+offset_right = -344.0
+offset_bottom = -205.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2o5x3")
+region_rect = Rect2(25, 1, 22, 22)
+patch_margin_left = 7
+patch_margin_top = 8
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+modulate = Color(0.8784314, 0.972549, 0.8117647, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = SubResource("AtlasTexture_cbqq6")
+script = ExtResource("3_cbqq6")
+signal_name = "close_pop_up"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ItemData_Crop" load_steps=12 format=3 uid="uid://bbnrgm4x41rmb"]
+
+[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="1_p7c5f"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_swgtu"]
+[ext_resource type="Resource" uid="uid://dec8qqbtlped5" path="res://Resources/Season_Spring.tres" id="2_f3134"]
+[ext_resource type="Resource" uid="uid://dfe5ojpv5e5hn" path="res://Resources/Season_Summer.tres" id="3_7o7rw"]
+[ext_resource type="Resource" uid="uid://86fdvib5e3nm" path="res://Resources/Season_Autumn.tres" id="4_ul7pw"]
+[ext_resource type="Resource" uid="uid://goni4x1f5hyo" path="res://Resources/Season_Winter.tres" id="5_yg1ln"]
+[ext_resource type="Script" uid="uid://8qfwkf53lu71" path="res://Scripts/ItemData_Crop.gd" id="7_qywvu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7c5f"]
+atlas = ExtResource("1_swgtu")
+region = Rect2(68, 22, 8, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3134"]
+atlas = ExtResource("1_swgtu")
+region = Rect2(84, 18, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o7rw"]
+atlas = ExtResource("1_swgtu")
+region = Rect2(98, 17, 12, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw6mk"]
+atlas = ExtResource("1_swgtu")
+region = Rect2(128, 17, 16, 15)
+
+[resource]
+script = ExtResource("7_qywvu")
+growth_time = 6
+growth_modifiers = Dictionary[ExtResource("1_p7c5f"), float]({
+ExtResource("2_f3134"): 1.0,
+ExtResource("3_7o7rw"): 1.0,
+ExtResource("4_ul7pw"): 0.8,
+ExtResource("5_yg1ln"): 0.5
+})
+growth_icons = Array[AtlasTexture]([SubResource("AtlasTexture_p7c5f"), SubResource("AtlasTexture_f3134"), SubResource("AtlasTexture_7o7rw")])
+item_name = "Turnip"
+description = "This is a turnip"
+icon = SubResource("AtlasTexture_lw6mk")
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

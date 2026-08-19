@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://g68quruwr20c"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_3wdrw"]
+[ext_resource type="Script" uid="uid://dait6c782mylw" path="res://Scripts/Village.gd" id="1_g6esj"]
+[ext_resource type="Texture2D" uid="uid://caxe4wpfwonks" path="res://Sprites/Houses.png" id="3_ptt31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptt31"]
+size = Vector2(128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdddk"]
+atlas = ExtResource("3_ptt31")
+region = Rect2(128, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptt31"]
+atlas = ExtResource("3_ptt31")
+region = Rect2(72, 0, 48, 64)
+
+[node name="Village" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_g6esj")
+
+[node name="Outline" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+z_index = -1
+offset_left = -65.0
+offset_top = -65.0
+offset_right = 65.0
+offset_bottom = 65.0
+texture = ExtResource("1_3wdrw")
+region_rect = Rect2(1, 1, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 6
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.9073486e-06, 0)
+shape = SubResource("RectangleShape2D_ptt31")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Area2D"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_3wdrw")
+region_rect = Rect2(1, 1, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 6
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Area2D"]
+vertices = PackedVector2Array(-72, -72, 72, -72, 72, 72, -72, 72)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(32, -16)
+texture = SubResource("AtlasTexture_fdddk")
+centered = false
+offset = Vector2(-24, -64)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-32, -16)
+texture = SubResource("AtlasTexture_fdddk")
+centered = false
+offset = Vector2(-24, -64)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(-32, 56)
+texture = SubResource("AtlasTexture_fdddk")
+centered = false
+offset = Vector2(-24, -64)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(32, 56)
+texture = SubResource("AtlasTexture_fdddk")
+centered = false
+offset = Vector2(-24, -64)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_ptt31")
+centered = false
+offset = Vector2(-24, -64)

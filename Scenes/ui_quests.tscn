@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfa3vn3yuv5pe"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_22ebq"]
+[ext_resource type="PackedScene" uid="uid://b3yshod858rml" path="res://Scenes/ui_quest_item.tscn" id="2_7gfn0"]
+[ext_resource type="Resource" uid="uid://cuxesueow584s" path="res://Resources/Item_Carrot.tres" id="3_r4602"]
+[ext_resource type="Texture2D" uid="uid://c1litlb2po1lr" path="res://Sprites/UIpackSheet_transparent.png" id="3_xp51a"]
+[ext_resource type="Resource" uid="uid://ywcpk4k2lxt0" path="res://Resources/Item_Corn.tres" id="4_oyt8x"]
+[ext_resource type="Resource" uid="uid://cg2qmbr3r1f0p" path="res://Resources/Item_Tomato.tres" id="5_an6vb"]
+[ext_resource type="Resource" uid="uid://bbnrgm4x41rmb" path="res://Resources/Item_Turnip.tres" id="6_u84aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aihh"]
+atlas = ExtResource("3_xp51a")
+region = Rect2(382, 470, 8, 12)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_top = -80.0
+offset_right = 272.0
+offset_bottom = 79.0
+
+[node name="UI_Placement" type="NinePatchRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_22ebq")
+region_rect = Rect2(25, 1, 22, 22)
+patch_margin_left = 7
+patch_margin_top = 8
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 2
+
+[node name="Item_1" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7gfn0")]
+layout_mode = 2
+item = ExtResource("3_r4602")
+
+[node name="Item_2" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7gfn0")]
+layout_mode = 2
+item = ExtResource("4_oyt8x")
+
+[node name="Item_3" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7gfn0")]
+layout_mode = 2
+item = ExtResource("5_an6vb")
+
+[node name="Item_4" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7gfn0")]
+layout_mode = 2
+item = ExtResource("6_u84aa")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_1aihh")
+stretch_mode = 3

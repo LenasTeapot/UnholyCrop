@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjo8f23sej3j3"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_55cb1"]
+[ext_resource type="Script" uid="uid://lbr3rxohn6yp" path="res://Scripts/UI/UI_placement_item_counter.gd" id="1_dsabu"]
+[ext_resource type="Texture2D" uid="uid://dk35s7nnjs8ge" path="res://Sprites/plot_icons_green.png" id="3_5w8ff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xijo"]
+atlas = ExtResource("3_5w8ff")
+region = Rect2(1, 0, 12, 13)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsabu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5w8ff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xijo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsn7x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g83il"]
+
+[node name="Placement_Item_Counter" type="AspectRatioContainer"]
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+stretch_mode = 0
+script = ExtResource("1_dsabu")
+
+[node name="UI_Placement2" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_55cb1")
+region_rect = Rect2(1, 1, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 8
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="UI_Placement2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.5
+offset_right = 6.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8xijo")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_Placement2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Placement2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 2
+
+[node name="Label_PlotSize" type="Label" parent="UI_Placement2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "2x2"
+horizontal_alignment = 1
+
+[node name="Label_Count" type="Label" parent="UI_Placement2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="UI_Placement2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dsabu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5w8ff")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8xijo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qsn7x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g83il")

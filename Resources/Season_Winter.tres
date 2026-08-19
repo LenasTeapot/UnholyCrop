@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Season" load_steps=2 format=3 uid="uid://goni4x1f5hyo"]
+
+[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="1_4iih2"]
+
+[resource]
+script = ExtResource("1_4iih2")
+name = "Winter"
+length = 8
+hue_shift = -0.7749999893125
+contrast_mult = 1.134000053865
+metadata/_custom_type_script = "uid://b1obkrf26wbcn"

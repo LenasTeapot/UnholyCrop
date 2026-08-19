@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData_Plot" load_steps=4 format=3 uid="uid://6hj13rfdsmjp"]
+
+[ext_resource type="Script" uid="uid://b1vca0keic50r" path="res://Scripts/ItemData_Plot.gd" id="1_o76tt"]
+[ext_resource type="Texture2D" uid="uid://dk35s7nnjs8ge" path="res://Sprites/plot_icons_green.png" id="1_xqi54"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnjxj"]
+atlas = ExtResource("1_xqi54")
+region = Rect2(52, 0, 12, 13)
+
+[resource]
+script = ExtResource("1_o76tt")
+grid_size = 5
+scene_path = "res://Scenes/Plot_Base.tscn"
+item_name = "5x5 Plot"
+description = "This is a placeable crop plot."
+icon = SubResource("AtlasTexture_lnjxj")
+metadata/_custom_type_script = "uid://b1vca0keic50r"

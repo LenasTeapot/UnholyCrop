@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ItemData_Crop" load_steps=12 format=3 uid="uid://cdhxrj2bdholy"]
+
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_w1uj5"]
+[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="2_i70qw"]
+[ext_resource type="Resource" uid="uid://dec8qqbtlped5" path="res://Resources/Season_Spring.tres" id="3_swfr3"]
+[ext_resource type="Resource" uid="uid://dfe5ojpv5e5hn" path="res://Resources/Season_Summer.tres" id="4_s2tad"]
+[ext_resource type="Resource" uid="uid://86fdvib5e3nm" path="res://Resources/Season_Autumn.tres" id="5_sabyi"]
+[ext_resource type="Resource" uid="uid://goni4x1f5hyo" path="res://Resources/Season_Winter.tres" id="6_syh77"]
+[ext_resource type="Script" uid="uid://8qfwkf53lu71" path="res://Scripts/ItemData_Crop.gd" id="7_br6fl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehn20"]
+atlas = ExtResource("1_w1uj5")
+region = Rect2(70, 74, 7, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyymy"]
+atlas = ExtResource("1_w1uj5")
+region = Rect2(86, 69, 7, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v82pf"]
+atlas = ExtResource("1_w1uj5")
+region = Rect2(99, 66, 9, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1uj5"]
+atlas = ExtResource("1_w1uj5")
+region = Rect2(128, 67, 15, 12)
+
+[resource]
+script = ExtResource("7_br6fl")
+growth_time = 4
+growth_modifiers = Dictionary[ExtResource("2_i70qw"), float]({
+ExtResource("3_swfr3"): 1.0,
+ExtResource("4_s2tad"): 1.0,
+ExtResource("5_sabyi"): 0.8,
+ExtResource("6_syh77"): 0.5
+})
+growth_icons = Array[AtlasTexture]([SubResource("AtlasTexture_ehn20"), SubResource("AtlasTexture_hyymy"), SubResource("AtlasTexture_v82pf")])
+item_name = "Mushroom"
+description = "This is a Mushroom."
+icon = SubResource("AtlasTexture_w1uj5")
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

@@ -1,0 +1,184 @@
+[gd_scene load_steps=20 format=3 uid="uid://bebtj3hp18h51"]
+
+[ext_resource type="PackedScene" uid="uid://dh68dtcbepifl" path="res://Scenes/ui_pop_up.tscn" id="1_tu2pb"]
+[ext_resource type="Script" uid="uid://dss0k5omxj65y" path="res://Scripts/UI/ui_plot_manager.gd" id="2_4nwjp"]
+[ext_resource type="Texture2D" uid="uid://c1litlb2po1lr" path="res://Sprites/UIpackSheet_transparent.png" id="2_esd2w"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="3_esd2w"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="3_hmtbx"]
+[ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="4_4nwjp"]
+[ext_resource type="Script" uid="uid://dlii022lwc742" path="res://Scripts/Action_AssignWorker.gd" id="5_hmtbx"]
+[ext_resource type="Script" uid="uid://bmmb2h3nb8ol7" path="res://Scripts/Action_ConfirmCrop.gd" id="8_k5xew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5xew"]
+atlas = ExtResource("2_esd2w")
+region = Rect2(472, 470, 8, 12)
+
+[sub_resource type="Resource" id="Resource_4nwjp"]
+script = ExtResource("5_hmtbx")
+amount = -1
+metadata/_custom_type_script = "uid://dlii022lwc742"
+
+[sub_resource type="Resource" id="Resource_k5xew"]
+script = ExtResource("5_hmtbx")
+amount = 1
+metadata/_custom_type_script = "uid://dlii022lwc742"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw6mk"]
+atlas = ExtResource("3_esd2w")
+region = Rect2(130, 50, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rox70"]
+atlas = ExtResource("3_hmtbx")
+region = Rect2(1, 1, 22, 22)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8b3n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stmm2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kceyf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tsyso"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbkrw"]
+
+[sub_resource type="Resource" id="Resource_rox70"]
+script = ExtResource("8_k5xew")
+metadata/_custom_type_script = "uid://bmmb2h3nb8ol7"
+
+[node name="UI_PopUp" instance=ExtResource("1_tu2pb")]
+offset_left = -80.0
+offset_top = -72.0
+offset_right = -400.0
+offset_bottom = -222.0
+script = ExtResource("2_4nwjp")
+
+[node name="MarginContainer" parent="." index="0"]
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Worker_Selection" type="HBoxContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Workers"
+
+[node name="Less_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="1"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_k5xew")
+stretch_mode = 3
+script = ExtResource("4_4nwjp")
+action = SubResource("Resource_4nwjp")
+
+[node name="Worker_Amount" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+
+[node name="More_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="3"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_k5xew")
+stretch_mode = 3
+flip_h = true
+script = ExtResource("4_4nwjp")
+action = SubResource("Resource_k5xew")
+
+[node name="Crop_Selection" type="HBoxContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Workers"
+
+[node name="Left_Crop_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_k5xew")
+stretch_mode = 3
+
+[node name="Crop_Icon" type="TextureRect" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_lw6mk")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Right_Crop_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="3"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_k5xew")
+stretch_mode = 3
+flip_h = true
+
+[node name="Confirm" type="MarginContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_rox70")
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="Confirm_Button" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm/NinePatchRect" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8b3n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_stmm2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kceyf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tsyso")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pbkrw")
+script = ExtResource("4_4nwjp")
+signal_name = "pop_up_confirmed"
+action = SubResource("Resource_rox70")
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm/NinePatchRect" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Ok"
+horizontal_alignment = 1
+vertical_alignment = 1

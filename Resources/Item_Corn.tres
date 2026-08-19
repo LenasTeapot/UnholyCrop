@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ItemData_Crop" load_steps=12 format=3 uid="uid://ywcpk4k2lxt0"]
+
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_bsfh5"]
+[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="2_sxybr"]
+[ext_resource type="Resource" uid="uid://dec8qqbtlped5" path="res://Resources/Season_Spring.tres" id="3_tdbg0"]
+[ext_resource type="Resource" uid="uid://dfe5ojpv5e5hn" path="res://Resources/Season_Summer.tres" id="4_4au6y"]
+[ext_resource type="Resource" uid="uid://86fdvib5e3nm" path="res://Resources/Season_Autumn.tres" id="5_6xs8b"]
+[ext_resource type="Resource" uid="uid://goni4x1f5hyo" path="res://Resources/Season_Winter.tres" id="6_nj64v"]
+[ext_resource type="Script" uid="uid://8qfwkf53lu71" path="res://Scripts/ItemData_Crop.gd" id="7_g61aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxybr"]
+atlas = ExtResource("1_bsfh5")
+region = Rect2(68, 36, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdbg0"]
+atlas = ExtResource("1_bsfh5")
+region = Rect2(83, 34, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70a8g"]
+atlas = ExtResource("1_bsfh5")
+region = Rect2(98, 32, 12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw6mk"]
+atlas = ExtResource("1_bsfh5")
+region = Rect2(129, 33, 14, 14)
+
+[resource]
+script = ExtResource("7_g61aa")
+growth_time = 6
+growth_modifiers = Dictionary[ExtResource("2_sxybr"), float]({
+ExtResource("3_tdbg0"): 1.0,
+ExtResource("4_4au6y"): 1.0,
+ExtResource("5_6xs8b"): 0.8,
+ExtResource("6_nj64v"): 0.5
+})
+growth_icons = Array[AtlasTexture]([SubResource("AtlasTexture_sxybr"), SubResource("AtlasTexture_tdbg0"), SubResource("AtlasTexture_70a8g")])
+item_name = "Corn"
+description = "This is corn."
+icon = SubResource("AtlasTexture_lw6mk")
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

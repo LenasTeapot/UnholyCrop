@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://i2l3hoavv6sw"]
+
+[ext_resource type="Script" uid="uid://b2w0rst24kjk7" path="res://Scripts/UI/UI_Inventory_Item.gd" id="1_erbj6"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_ffsct"]
+[ext_resource type="Resource" uid="uid://cuxesueow584s" path="res://Resources/Item_Carrot.tres" id="2_o2jta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw6mk"]
+atlas = ExtResource("1_ffsct")
+region = Rect2(131, 0, 10, 16)
+
+[node name="Item" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_erbj6")
+item = ExtResource("2_o2jta")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_lw6mk")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

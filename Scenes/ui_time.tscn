@@ -1,0 +1,136 @@
+[gd_scene load_steps=14 format=3 uid="uid://dmlfgbg43xknp"]
+
+[ext_resource type="Script" uid="uid://dncppbkhtloyl" path="res://Scripts/UI/ui_time.gd" id="1_16ips"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_82ahs"]
+[ext_resource type="Texture2D" uid="uid://cpyg7ktuyw0qy" path="res://Sprites/PixelPeteFont-ascii.png" id="2_16ips"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w6v2"]
+atlas = ExtResource("1_82ahs")
+region = Rect2(25, 1, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueoa1"]
+atlas = ExtResource("2_16ips")
+region = Rect2(89, 1, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vcvc"]
+atlas = ExtResource("2_16ips")
+region = Rect2(89, 49, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
+atlas = ExtResource("1_82ahs")
+region = Rect2(54, 1, 12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
+atlas = ExtResource("2_16ips")
+region = Rect2(105, 10, 5, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
+atlas = ExtResource("2_16ips")
+region = Rect2(105, 58, 5, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ips"]
+atlas = ExtResource("2_16ips")
+region = Rect2(114, 8, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8axaq"]
+atlas = ExtResource("2_16ips")
+region = Rect2(114, 56, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vto"]
+atlas = ExtResource("2_16ips")
+region = Rect2(105, 10, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ogr2"]
+atlas = ExtResource("2_16ips")
+region = Rect2(105, 58, 5, 6)
+
+[node name="UI_Time" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_16ips")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -136.0
+offset_right = 240.0
+offset_bottom = -64.0
+texture = SubResource("AtlasTexture_1w6v2")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Increase_Button" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_ueoa1")
+texture_pressed = SubResource("AtlasTexture_6vcvc")
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u50mg")
+
+[node name="Decrease_Button" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_7k868")
+texture_pressed = SubResource("AtlasTexture_hpc6h")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u50mg")
+
+[node name="Play_Button" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_16ips")
+texture_pressed = SubResource("AtlasTexture_8axaq")
+stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u50mg")
+
+[node name="Pause_Button" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_64vto")
+texture_pressed = SubResource("AtlasTexture_5ogr2")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 216.0
+offset_top = -64.0
+offset_right = 240.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 10
+text = "0.0"
+horizontal_alignment = 1
