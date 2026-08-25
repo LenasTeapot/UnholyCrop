@@ -1,9 +1,28 @@
-[gd_resource type="Resource" script_class="PopUpData" load_steps=2 format=3 uid="uid://c3bn155tlittu"]
+[gd_resource type="Resource" script_class="PopUpData" load_steps=5 format=3 uid="uid://c3bn155tlittu"]
 
+[ext_resource type="Script" uid="uid://ctqhql2f1rtwr" path="res://Scripts/PopUpOptionData.gd" id="1_a8ei2"]
 [ext_resource type="Script" uid="uid://dul1i7pgw3chd" path="res://Scripts/PopUpData.gd" id="1_rdder"]
+
+[sub_resource type="Resource" id="Resource_308t5"]
+script = ExtResource("1_a8ei2")
+button_label = "Ok"
+event_signal = "accept_completed_quest"
+metadata/_custom_type_script = "uid://ctqhql2f1rtwr"
+
+[sub_resource type="Resource" id="Resource_n6sv8"]
+script = ExtResource("1_a8ei2")
+button_label = "No"
+event_signal = "decline_completed_quest"
+metadata/_custom_type_script = "uid://ctqhql2f1rtwr"
 
 [resource]
 script = ExtResource("1_rdder")
-scene_path = "uid://b731wbdbd0ar3"
+scene_path = "uid://ddinj2ny3il1m"
 pause_game = true
+title = "A Sacrifice"
+description = "The God of Corn requests a sacrifice!"
+use_portrait = true
+use_options = true
+option_data = Array[ExtResource("1_a8ei2")]([SubResource("Resource_308t5"), SubResource("Resource_n6sv8")])
+use_information = true
 metadata/_custom_type_script = "uid://dul1i7pgw3chd"

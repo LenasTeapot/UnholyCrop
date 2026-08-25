@@ -35,24 +35,25 @@ metadata/_custom_type_script = "uid://b1bmqrshyxxd0"
 
 [node name="UI_PopUp" instance=ExtResource("1_f2wjl")]
 offset_top = -48.0
-offset_bottom = -223.0
+offset_bottom = 222.0
 
-[node name="MarginContainer" parent="." index="0"]
-mouse_filter = 2
+[node name="UI_PopUp" parent="." index="0"]
+offset_top = -7.0
+offset_bottom = -166.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="1"]
+[node name="MarginContainer#VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer" index="1"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="0"]
+[node name="MarginContainer_VBoxContainer#MarginContainer2" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer" index="0"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2" index="0"]
+[node name="MarginContainer_VBoxContainer_MarginContainer2#Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer2" index="0"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
@@ -61,18 +62,18 @@ text = "Are you sure you want to delete this plot?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="MarginContainer_VBoxContainer#MarginContainer" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer" index="1"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
+[node name="MarginContainer_VBoxContainer_MarginContainer#HBoxContainer" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer" index="0"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 24
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="0"]
+[node name="MarginContainer_VBoxContainer_MarginContainer_HBoxContainer#NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer/MarginContainer_VBoxContainer_MarginContainer#HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_gax8n")
@@ -81,36 +82,27 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 8
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect" index="0"]
+[node name="MarginContainer_VBoxContainer_MarginContainer_HBoxContainer_NinePatchRect#Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer/MarginContainer_VBoxContainer_MarginContainer#HBoxContainer/MarginContainer_VBoxContainer_MarginContainer_HBoxContainer#NinePatchRect" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s25h5")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gax8n")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_crj0r")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_bge0i")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jmiqg")
+text = "Ok
+"
 script = ExtResource("3_gax8n")
 signal_name = "pop_up_confirmed"
 action = SubResource("Resource_60nfe")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect" index="1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
-theme_override_font_sizes/font_size = 8
-text = "OK"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" index="1"]
+[node name="MarginContainer_VBoxContainer_MarginContainer_HBoxContainer#NinePatchRect2" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer/MarginContainer_VBoxContainer_MarginContainer#HBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_gax8n")
@@ -119,31 +111,20 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 8
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect2" index="0"]
+[node name="MarginContainer_VBoxContainer_MarginContainer_HBoxContainer_NinePatchRect2#Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/MarginContainer_VBoxContainer#MarginContainer/MarginContainer_VBoxContainer_MarginContainer#HBoxContainer/MarginContainer_VBoxContainer_MarginContainer_HBoxContainer#NinePatchRect2" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_60nfe")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_iybb1")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_6blee")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8qhtm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gmd81")
+text = "Cancel"
 script = ExtResource("3_gax8n")
 signal_name = "pop_up_cancelled"
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect2" index="1"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
-theme_override_font_sizes/font_size = 8
-text = "Cancel"
-horizontal_alignment = 1
-vertical_alignment = 1

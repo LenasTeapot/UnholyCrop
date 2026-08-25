@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var pop_up : Node
 var pop_up_owner : Node
+
+var pop_up_queue = {}
 # TODO : Create Pop Up Data class
 # Scene path, pause bool
 # Sub class for dialogue from village or diety
@@ -15,21 +17,35 @@ func _ready():
 
 func _on_request_pop_up(_pop_up_data : PopUpData, _owning_node : Node):
 	if pop_up != null:
+		pop_up_queue[_pop_up_data] = _owning_node
 		return
+
+	if _pop_up_data.pause_game:
+		Calendar.emit_signal("game_pause")
+
 	pop_up = load(_pop_up_data.scene_path).instantiate()
 	pop_up_owner = _owning_node
 	add_child(pop_up)
-	if _pop_up_data.pause_game:
-		Calendar.emit_signal("game_pause")
+
+	if pop_up.has_method("load_data"):
+		pop_up.load_data(_pop_up_data)
 
 func _on_close_pop_up():
 	if pop_up == null:
 		return
-	Calendar.emit_signal("game_play")
+
 	pop_up.queue_free()
 	pop_up = null
 	pop_up_owner = null
-	
+
+	if len(pop_up_queue) != 0:
+		var next_pop_up_data = pop_up_queue.keys()[0]
+		var next_pop_up_owner = pop_up_queue[next_pop_up_data]
+		pop_up_queue.erase(next_pop_up_data)
+		_on_request_pop_up(next_pop_up_data, next_pop_up_owner)
+	else:
+		Calendar.emit_signal("game_play")
+
 func _on_pop_up_cancelled():
 	if pop_up == null:
 		return

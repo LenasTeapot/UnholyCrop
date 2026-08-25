@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PopUpData" load_steps=3 format=3 uid="uid://7m1sfyp07ugs"]
+
+[ext_resource type="Script" uid="uid://ctqhql2f1rtwr" path="res://Scripts/PopUpOptionData.gd" id="1_gb1re"]
+[ext_resource type="Script" uid="uid://dul1i7pgw3chd" path="res://Scripts/PopUpData.gd" id="2_gfvyj"]
+
+[resource]
+script = ExtResource("2_gfvyj")
+scene_path = "uid://bj6m5sxxnwrca"
+pause_game = true
+metadata/_custom_type_script = "uid://dul1i7pgw3chd"

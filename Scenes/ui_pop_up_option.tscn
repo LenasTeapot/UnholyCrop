@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4mv2o42jgdq1"]
+
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_qdiii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi6cu"]
+atlas = ExtResource("1_qdiii")
+region = Rect2(1, 1, 22, 22)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ogvxs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qdiii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko0un"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_frjb4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdly5"]
+
+[node name="Option" type="HBoxContainer"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_oi6cu")
+patch_margin_left = 4
+patch_margin_top = 6
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 4
+
+[node name="Button" type="Button" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_colors/font_focus_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_colors/font_pressed_color = Color(0.5254902, 0.7529412, 0.42352942, 1)
+theme_override_colors/font_hover_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.5254902, 0.7529412, 0.42352942, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ogvxs")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qdiii")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ko0un")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_frjb4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mdly5")
+text = "Button Text"
+alignment = 0

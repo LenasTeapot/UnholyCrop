@@ -46,4 +46,3 @@ func _on_add_plot(plot_data):
 	plot.plot_data = plot_data
 	plot.global_position = get_global_mouse_position()
 	plot.is_held = true
-	plot._init()

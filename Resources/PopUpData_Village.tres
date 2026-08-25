@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_xo4s7")
-scene_path = "uid://2s7pk1cm8xgc"
+scene_path = "uid://ddinj2ny3il1m"
 pause_game = true
+title = "Village"
+description = "Village Test"
+use_portrait = true
 metadata/_custom_type_script = "uid://dul1i7pgw3chd"

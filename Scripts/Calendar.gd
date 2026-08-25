@@ -11,6 +11,7 @@ var day_length := 3.0
 var day_timer : Timer
 var current_timescale := 1
 var is_paused := true
+var master_pause := false
 
 @warning_ignore_start("unused_signal")
 signal game_pause
@@ -24,6 +25,8 @@ var current_day : int = 1
 var current_season : int = 0
 var current_year : int = 1
 var year_length : int = 0
+
+var season_pop_up := preload("res://Resources/PopUpData_SeasonBanner.tres")
 
 func _ready():
 	# Signal connect
@@ -46,7 +49,7 @@ func calculate_season():
 		current_season = 0
 		current_day = 1
 		current_year += 1
-		change_seaon()
+		change_season()
 		return
 	
 	var day_sum : int = 0
@@ -55,7 +58,7 @@ func calculate_season():
 		if current_day <= day_sum:
 			if current_season != i:
 				current_season = i
-				change_seaon()
+				change_season()
 			else:
 				current_season = i
 			return
@@ -69,22 +72,29 @@ func _on_day_end():
 	current_day += 1
 	calculate_season()
 	
-func change_seaon():
+func change_season():
 	print("The current season is ", get_current_season().name, " of year ", current_year)
+	Events.request_pop_up.emit(season_pop_up, self)
 	season_end.emit(get_current_season())
 	
+func set_master_pause(value: bool):
+	master_pause = value
+	set_timescale()
+
 func _on_game_pause():
 	#print("Pause game")
 	is_paused = true
 	set_timescale()
 	
 func _on_game_play():
-	#print("Play game")
+	print("Play game")
 	is_paused = false
 	set_timescale()
 
 func set_timescale():
-	if is_paused:
+	if master_pause:
+		Engine.time_scale = 0
+	elif is_paused:
 		Engine.time_scale = 0
 	else:
 		Engine.time_scale = current_timescale
@@ -110,8 +120,8 @@ func new_timer(duration):
 func load_game(_seasons_in):
 	Seasons = _seasons_in
 	year_length = calc_year_length()
-	change_seaon()
-	
+	#season_end.emit(get_current_season())
+	change_season()
 	day_timer.start()
 	
 func save_game():

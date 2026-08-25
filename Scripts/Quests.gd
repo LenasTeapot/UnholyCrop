@@ -9,6 +9,7 @@ var completed_quests : Array[QuestData]
 var quest_complete : bool = false
 
 var pop_up_data : PopUpData = preload("res://Resources/PopUpData_Quest.tres")
+var initial_pop_up : PopUpData = preload("res://Resources/PopUpInitialQuest.tres")
 
 signal quest_updated
 
@@ -24,6 +25,8 @@ func load_game():
 	quest_updated.emit()
 	Events.accept_completed_quest.connect(on_accept_completed_quest)
 	Events.decline_completed_quest.connect(on_decline_completed_quest)
+
+	Events.request_pop_up.emit(initial_pop_up, self)
 
 func new_quest():
 	current_active_quest = QuestData.new()

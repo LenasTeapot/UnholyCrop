@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3j5w0")
 name = "Summer"
-length = 8
+length = 16
 hue_shift = 0.854
 brightness_add = 0.1
 contrast_mult = 1.34

@@ -21,13 +21,6 @@ func _ready():
 	else:
 		printerr("This placeable does not have an Area2D!")
 
-	Events.request_pop_up.connect(pop_up_event)
-
-func pop_up_event(_scene_path, _owning_node):
-	# TODO : Major bug!! Just spawned plots must be returned to inventory when a pop up occurs, or the placement mechanism should be paused
-	# TODO: Plot should not increment time, or game should pause while placing plot
-	release_hold(false)
-
 func _process(_delta):
 	if not is_held:
 		return
@@ -54,8 +47,6 @@ func release_hold(keep_position : bool):
 		is_held = false
 	
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	#if Calendar.is_paused:
-	#	return
 	if event.is_action_pressed("select"):
 		if area.has_overlapping_areas():
 			return
@@ -67,9 +58,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 		release_hold(true)
 	elif event.is_action_pressed("clear"):
 		release_hold(false)
-	#Open interface on hover
-	#if interface:
-	#	interface.visible = not interface.visible
 
 func hover_begin():
 	if Calendar.is_paused:

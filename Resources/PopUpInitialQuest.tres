@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="PopUpData" load_steps=4 format=3 uid="uid://ccrrp27ratnoe"]
+
+[ext_resource type="Script" uid="uid://dul1i7pgw3chd" path="res://Scripts/PopUpData.gd" id="1_a2ygf"]
+[ext_resource type="Script" uid="uid://ctqhql2f1rtwr" path="res://Scripts/PopUpOptionData.gd" id="1_onm61"]
+
+[sub_resource type="Resource" id="Resource_0vi5w"]
+script = ExtResource("1_onm61")
+button_label = "Got it."
+event_signal = "close_pop_up"
+metadata/_custom_type_script = "uid://ctqhql2f1rtwr"
+
+[resource]
+script = ExtResource("1_a2ygf")
+scene_path = "uid://ddinj2ny3il1m"
+pause_game = true
+title = "Welcome"
+description = "Welcome PLAYER_NAME. In our small village here we worship the God of GOD_NAME. I am the PRIEST_TITLE and I will speak to them for you.
+Our most holy day, the Feast of GOD_NAME, approaches and a sacrifice is required. "
+use_portrait = true
+use_options = true
+option_data = Array[ExtResource("1_onm61")]([SubResource("Resource_0vi5w")])
+metadata/_custom_type_script = "uid://dul1i7pgw3chd"

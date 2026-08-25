@@ -1,15 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://b731wbdbd0ar3"]
+[gd_scene load_steps=14 format=3 uid="uid://b731wbdbd0ar3"]
 
 [ext_resource type="PackedScene" uid="uid://dh68dtcbepifl" path="res://Scenes/ui_pop_up.tscn" id="1_jcvur"]
 [ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="2_j0tys"]
 [ext_resource type="Script" uid="uid://b5rw2ojjt0udl" path="res://Scripts/UI/UI_pop_up_quest_complete.gd" id="2_tyalt"]
 [ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="3_tyalt"]
+[ext_resource type="Texture2D" uid="uid://cu6b6fu4earaj" path="res://Sprites/GameBoyCharactersSprites.png" id="4_tyalt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exwer"]
 atlas = ExtResource("3_tyalt")
 region = Rect2(24, 1, 24, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyalt"]
+atlas = ExtResource("4_tyalt")
+region = Rect2(18, 2, 12, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxq5f"]
 atlas = ExtResource("3_tyalt")
@@ -79,7 +82,7 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 texture = SubResource("AtlasTexture_tyalt")
 expand_mode = 2
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
 layout_mode = 2

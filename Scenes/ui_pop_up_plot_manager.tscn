@@ -46,16 +46,15 @@ script = ExtResource("8_k5xew")
 metadata/_custom_type_script = "uid://bmmb2h3nb8ol7"
 
 [node name="UI_PopUp" instance=ExtResource("1_tu2pb")]
-offset_left = -80.0
-offset_top = -72.0
-offset_right = -400.0
-offset_bottom = -222.0
 script = ExtResource("2_4nwjp")
 
-[node name="MarginContainer" parent="." index="0"]
-mouse_filter = 2
+[node name="UI_PopUp" parent="." index="0"]
+offset_left = 160.0
+offset_top = 71.0
+offset_right = -160.0
+offset_bottom = -71.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer" index="1"]
+[node name="MarginContainer#MarginContainer2" type="MarginContainer" parent="UI_PopUp/MarginContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -64,31 +63,31 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2" index="0"]
+[node name="MarginContainer_MarginContainer2#VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2" index="0"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Worker_Selection" type="HBoxContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="0"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer#Worker_Selection" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="0"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Worker_Selection#Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Worker_Selection" index="0"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
 theme_override_font_sizes/font_size = 8
 text = "Workers"
 
-[node name="Less_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="1"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Worker_Selection#Less_Button" type="TextureButton" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Worker_Selection" index="1"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_k5xew")
 stretch_mode = 3
 script = ExtResource("4_4nwjp")
 action = SubResource("Resource_4nwjp")
 
-[node name="Worker_Amount" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="2"]
+[node name="Worker_Amount" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Worker_Selection" index="2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
@@ -97,7 +96,7 @@ theme_override_font_sizes/font_size = 8
 text = "0"
 horizontal_alignment = 1
 
-[node name="More_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Worker_Selection" index="3"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Worker_Selection#More_Button" type="TextureButton" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Worker_Selection" index="3"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_k5xew")
 stretch_mode = 3
@@ -105,46 +104,46 @@ flip_h = true
 script = ExtResource("4_4nwjp")
 action = SubResource("Resource_k5xew")
 
-[node name="Crop_Selection" type="HBoxContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="1"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="0"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Crop_Selection#Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" index="0"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
 theme_override_font_sizes/font_size = 8
 text = "Workers"
 
-[node name="Left_Crop_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="1"]
+[node name="Left_Crop_Button" type="TextureButton" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_k5xew")
 stretch_mode = 3
 
-[node name="Crop_Icon" type="TextureRect" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="2"]
+[node name="Crop_Icon" type="TextureRect" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" index="2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_lw6mk")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Right_Crop_Button" type="TextureButton" parent="MarginContainer/MarginContainer2/VBoxContainer/Crop_Selection" index="3"]
+[node name="Right_Crop_Button" type="TextureButton" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" index="3"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_k5xew")
 stretch_mode = 3
 flip_h = true
 
-[node name="Confirm" type="MarginContainer" parent="MarginContainer/MarginContainer2/VBoxContainer" index="2"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer#Confirm" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm" index="0"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_rox70")
@@ -153,12 +152,11 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 8
 
-[node name="Confirm_Button" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm/NinePatchRect" index="0"]
+[node name="Confirm_Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm/MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" index="0"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8b3n")
@@ -170,7 +168,7 @@ script = ExtResource("4_4nwjp")
 signal_name = "pop_up_confirmed"
 action = SubResource("Resource_rox70")
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/VBoxContainer/Confirm/NinePatchRect" index="1"]
+[node name="MarginContainer_MarginContainer2_VBoxContainer_Confirm_NinePatchRect#Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm/MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" index="1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

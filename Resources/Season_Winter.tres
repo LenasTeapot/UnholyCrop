@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_4iih2")
 name = "Winter"
-length = 8
+length = 16
 hue_shift = -0.7749999893125
 contrast_mult = 1.134000053865
 metadata/_custom_type_script = "uid://b1obkrf26wbcn"

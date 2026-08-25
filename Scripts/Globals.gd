@@ -19,3 +19,22 @@ const PLOTS : Array[ItemData] = [
     preload("res://Resources/Item_Plot_4.tres"),
     preload("res://Resources/Item_Plot_5.tres")
 ]
+
+const GOD_NAME_OPTIONS = ["Mushroom", "Corn", "Rot"]
+
+const PLAYER_NAME_OPTIONS = ["Mayor", "Regent", "Chief"]
+
+const PRIEST_TITLE_OPTIONS = ["high priest", "holy seer", "speaker"]
+
+var global_names = {
+    "PLAYER_NAME" : PLAYER_NAME_OPTIONS.pick_random(),
+    "PRIEST_TITLE" : PRIEST_TITLE_OPTIONS.pick_random(),
+    "GOD_NAME" : GOD_NAME_OPTIONS.pick_random() 
+}
+
+func rename_globals(string_in : String) -> String:
+    var string_out = string_in
+    for k in global_names.keys():
+        string_out = string_out.replace(k, global_names[k])
+    return string_out
+

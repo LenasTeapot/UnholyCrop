@@ -66,6 +66,8 @@ func add_worker(amount):
 		# TODO: Make worker move to plot and move around it???
 
 func change_crop(new_crop_data : ItemData_Crop):
+	if new_crop_data == item:
+		return
 	item = new_crop_data
 	current_progress = 0.0
 	update_sprites()

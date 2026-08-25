@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqxfw08h8xbmp"]
+
+[ext_resource type="PackedScene" uid="uid://dh68dtcbepifl" path="res://Scenes/ui_pop_up.tscn" id="1_t2nsp"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="3_m84hj"]
+[ext_resource type="Texture2D" uid="uid://cu6b6fu4earaj" path="res://Sprites/GameBoyCharactersSprites.png" id="4_yfuod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exwer"]
+atlas = ExtResource("3_m84hj")
+region = Rect2(24, 1, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyalt"]
+atlas = ExtResource("4_yfuod")
+region = Rect2(18, 2, 12, 14)
+
+[node name="UI_PopUp" instance=ExtResource("1_t2nsp")]
+offset_top = -136.0
+offset_bottom = 134.0
+
+[node name="UI_PopUp" parent="." index="0"]
+offset_top = 40.0
+offset_bottom = -47.0
+
+[node name="MarginContainer#VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer" index="1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer2" index="0"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer2/AspectRatioContainer" index="0"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_exwer")
+region_rect = Rect2(0, 0, 24, 23)
+patch_margin_left = 7
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer2/AspectRatioContainer/NinePatchRect" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer2/AspectRatioContainer/NinePatchRect/MarginContainer" index="0"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tyalt")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
+mouse_filter = 2
+theme_override_constants/margin_top = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Welcome Mayor. In our small village here we worship the God of Corn. I am the high priest and I will speak to them for you.
+Our most holy day, the Feast of Corn, approaches and a sacrifice is required. "
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 2
+
+[node name="ItemContainer" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/ItemContainer" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Sacrifice : "

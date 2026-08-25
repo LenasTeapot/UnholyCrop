@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj6m5sxxnwrca"]
+
+[ext_resource type="Script" uid="uid://hifv1ey8fcwk" path="res://Scripts/UI/UI_season_banner.gd" id="1_mmgq5"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_rfax0"]
+[ext_resource type="Theme" uid="uid://7qhv3e3f86v2" path="res://Scripts/UI/UI_Theme.tres" id="2_k5sh0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbqq6"]
+
+[node name="Panel" type="Panel"]
+offset_left = -240.0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cbqq6")
+script = ExtResource("1_mmgq5")
+
+[node name="UI_PopUp" type="NinePatchRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = 119.0
+offset_right = -152.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rfax0")
+region_rect = Rect2(0, 24, 24, 24)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_PopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="UI_PopUp/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_k5sh0")
+theme_override_font_sizes/font_size = 12
+text = "SEASON"
+horizontal_alignment = 1
+vertical_alignment = 1
