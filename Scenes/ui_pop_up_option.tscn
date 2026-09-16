@@ -17,6 +17,8 @@ region = Rect2(1, 1, 22, 22)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdly5"]
 
 [node name="Option" type="HBoxContainer"]
+size_flags_horizontal = 3
+alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2

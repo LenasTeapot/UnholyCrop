@@ -14,6 +14,7 @@ var is_paused := true
 var master_pause := false
 
 @warning_ignore_start("unused_signal")
+signal loaded
 signal game_pause
 signal game_play
 signal day_end
@@ -37,6 +38,7 @@ func _ready():
 	day_timer.timeout.connect(_on_day_end)
 	
 	set_timescale()
+	loaded.emit()
 	
 func calc_year_length():
 	var y = 0

@@ -89,18 +89,18 @@ theme_override_constants/margin_bottom = 4
 
 [node name="Main_Container" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 8
+alignment = 1
 
 [node name="Portrait_Container" type="AspectRatioContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/Portrait_Container"]
 layout_mode = 2
@@ -130,40 +130,25 @@ texture = SubResource("AtlasTexture_4te52")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="Description" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 theme = ExtResource("2_xiu73")
+theme_override_font_sizes/font_size = 6
 text = "Description Description Description Description Description Description Description Description Description Description Description Description "
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Information_1" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Information_1_Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/VBoxContainer/Information_1"]
+[node name="Information_Container" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_xiu73")
-text = "Label : "
+size_flags_horizontal = 4
+theme_override_constants/separation = 2
+alignment = 1
 
-[node name="Information_2" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Information_2_Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container/HBoxContainer/VBoxContainer/Information_2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_xiu73")
-text = "Label : "
-
-[node name="Options_Container" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container"]
+[node name="Options_Container" type="HBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer/Main_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1

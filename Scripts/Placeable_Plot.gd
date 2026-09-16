@@ -104,6 +104,8 @@ func produce_crop(amount):
 	%GPUParticles2D.emitting = true
 
 func update_sprites():
+	%Crop_Icon.texture = item.icon
+
 	var children = %Plants.get_children()
 	for c in children:
 		c.queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cohc2a3m0wc36"]
+[gd_scene load_steps=13 format=3 uid="uid://cohc2a3m0wc36"]
 
 [ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_o4p23"]
+[ext_resource type="Script" uid="uid://ccaddgp73dkv5" path="res://Scenes/Global_Label.gd" id="2_ptqgb"]
 [ext_resource type="PackedScene" uid="uid://i2l3hoavv6sw" path="res://Scenes/ui_inventory_item.tscn" id="2_r6pni"]
 [ext_resource type="Resource" uid="uid://ywcpk4k2lxt0" path="res://Resources/Item_Corn.tres" id="3_c5rk8"]
 [ext_resource type="Resource" uid="uid://cg2qmbr3r1f0p" path="res://Resources/Item_Tomato.tres" id="4_578bi"]
@@ -54,14 +55,16 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer"]
+[node name="Countdown" type="Label" parent="NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
 theme_override_font_sizes/font_size = 6
-text = "The Holy Day is approaching."
+text = "The Feast of {GOD_NAME} is approaching in {countdown} days"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_ptqgb")
 
 [node name="UI_Inventory" type="NinePatchRect" parent="."]
 layout_mode = 1

@@ -6,8 +6,6 @@ class_name PopUpData
 @export_category("Configuration")
 @export var title : String
 @export_multiline var description : String
-@export var use_description : bool = true
 @export var use_portrait : bool = false
-@export var use_options : bool = false
 @export var option_data : Array[PopUpOptionData]
-@export var use_information : bool = false #TODO :  How to pass information? Action class?
+@export var information_data : Array[PopUpInformationData]
