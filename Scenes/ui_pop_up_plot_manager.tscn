@@ -114,7 +114,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
 theme_override_font_sizes/font_size = 8
-text = "Workers"
+text = "Crop"
 
 [node name="Left_Crop_Button" type="TextureButton" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Crop_Selection" index="1"]
 unique_name_in_owner = true

@@ -1,5 +1,6 @@
 extends Node
 
+# Constants
 const SNAP_SIZE := 8.0
 const GRID_SIZE := 16.0
 
@@ -20,18 +21,30 @@ const PLOTS : Array[ItemData] = [
 	preload("res://Resources/Item_Plot_5.tres")
 ]
 
-const GOD_NAME_OPTIONS = ["Mushroom", "Corn", "Rot"]
+const GOD_OPTIONS = [
+	"res://Resources/GodData_Corn.tres",
+	"res://Resources/GodData_Mushroom.tres",
+	"res://Resources/GodData_Rot.tres"
+]
 
 const PLAYER_NAME_OPTIONS = ["Mayor", "Regent", "Chief"]
 
 const PRIEST_TITLE_OPTIONS = ["high priest", "holy seer", "speaker"]
 
+
+# Runtime
+var current_god : GodData
+
 var global_names = {
 	"PLAYER_NAME" : PLAYER_NAME_OPTIONS.pick_random(),
 	"PRIEST_TITLE" : PRIEST_TITLE_OPTIONS.pick_random(),
-	"GOD_NAME" : GOD_NAME_OPTIONS.pick_random()
+	"GOD_NAME" : ""
 }
 
 func rename_globals(string_in : String) -> String:
 	var string_out = string_in
 	return string_out.format(global_names)
+
+func _ready():
+	current_god = load(GOD_OPTIONS.pick_random())
+	global_names["GOD_NAME"] = current_god.god_name

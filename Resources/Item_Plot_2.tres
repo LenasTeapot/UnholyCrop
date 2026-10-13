@@ -10,6 +10,7 @@ region = Rect2(1, 0, 12, 13)
 [resource]
 script = ExtResource("1_c4pai")
 scene_path = "res://Scenes/Plot_Base.tscn"
+max_workers = 2
 item_name = "2x2 Plot"
 description = "This is a 2x2 placeable crop plot."
 icon = SubResource("AtlasTexture_6n117")

@@ -59,10 +59,10 @@ func add_worker(amount):
 	### TODO: Create a modifier for workers, and apply to crop production
 	if workers == 0 and amount <= 0:
 		return
-	if workers == plot_data.grid_size and amount > 0:
+	if workers == plot_data.max_workers and amount > 0:
 		return
-	if Inventory.request_worker(amount): # This also updates the global count of wokers
-		workers = clamp(workers + amount, 0, plot_data.grid_size)
+	if Inventory.request_worker(amount): # This also updates the global count of workers
+		workers = clamp(workers + amount, 0, plot_data.max_workers)
 		# TODO: Make worker move to plot and move around it???
 
 func change_crop(new_crop_data : ItemData_Crop):
@@ -74,11 +74,11 @@ func change_crop(new_crop_data : ItemData_Crop):
 
 func _on_day_end(_current_day):
 	### It would be good to show which crops are not growing, so player understands how many will be produced
-
-	var mod = item.growth_modifiers[Calendar.get_current_season()] # Move to crop data class?
 	current_progress += 1
 	if current_progress > item.growth_time:
-		produce_crop((plot_data.grid_size * plot_data.grid_size) * mod)
+		var mod = item.growth_modifiers[Calendar.get_current_season()] # Move to crop data class?
+		var worker_mod = (float(workers) / float(plot_data.max_workers))
+		produce_crop((plot_data.grid_size * plot_data.grid_size) * worker_mod * mod)
 		current_progress = 0
 	update_sprites()
 
@@ -99,6 +99,9 @@ func release_hold(keep_position : bool):
 func produce_crop(amount):
 	print("Produce ", amount, " ", item.item_name)
 	Inventory.request_add_item.emit(item, amount, true)
+	if amount == 0:
+		return
+		
 	%GPUParticles2D.texture = item.icon
 	%GPUParticles2D.amount = amount
 	%GPUParticles2D.emitting = true

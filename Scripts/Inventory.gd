@@ -24,6 +24,8 @@ func _on_request_add_item(_item_data, _quantity, should_update):
 	update_inventory_item(_item_data, _quantity)
 	if should_update:
 		update_ui.emit()
+	if _item_data == Globals.VILLAGER:
+		add_villager(_quantity)
 	
 func _on_request_remove_item(_item_data, _quantity, should_update):
 	update_inventory_item(_item_data, 0 - _quantity)
@@ -45,7 +47,7 @@ func get_item_quantity(_item_in):
 		return 0
 
 func load_game(_starting_villager_count):
-	add_villager(_starting_villager_count)
+	_on_request_add_item(Globals.VILLAGER, _starting_villager_count, true)
 
 func request_worker(amount: int) -> bool:
 	var new_total = available_workers + (0 - amount)
@@ -61,9 +63,9 @@ func add_villager(count):
 	for i in count:
 		Events.emit_signal("add_villager")
 
-	var villager_data : ItemData = load("res://Resources/Item_Villager.tres")
-	_on_request_add_item(villager_data, count, true)
-	available_workers = int(items["Villager"])
+	#_on_request_add_item(Globals.VILLAGER, count, true)
+	available_workers += count
+	print(available_workers)
 
 func remove_villager(count):
 	for i in count:

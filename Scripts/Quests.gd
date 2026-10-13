@@ -1,23 +1,24 @@
 @tool
 extends Node
 
-
-### TODO: Change the small quest to trigger on a timer, request what is known to be in the inventory. 
+const DIFFICULTY_DIV = 3 # TODO: Make tunable from global settings? 
+var difficulty_increment = 4
 
 @warning_ignore("unused_signal")
 signal loaded
 
+# End Quest
 var end_quest : QuestData
 
-var difficulty_increment = 4
-
+# Small Quests
 var current_active_quest : QuestData
 var completed_quests : Array[QuestData]
+signal quest_updated
 
+# Pop Ups
 var pop_up_data : PopUpData = preload("res://Resources/PopUpData_Quest.tres")
 var initial_pop_up : PopUpData = preload("res://Resources/PopUpInitialQuest.tres")
-
-signal quest_updated
+var end_pop_up : PopUpData = preload("res://Resources/PopUpData_EndQuest.tres")
 
 func load_game():
 	if end_quest == null:
@@ -40,15 +41,16 @@ func load_game():
 func on_day_end(_current_day):
 	if current_active_quest.timeline == 0:
 		current_active_quest.set_quest_requirements()
+		current_active_quest.set_quest_rewards()
+		current_active_quest.print_quest()
 		complete_quest()
 	
 	if end_quest.timeline == 0:
-		print("END QUEST COMPLETE")
+		Events.request_pop_up.emit(end_pop_up, self)
 
 func new_quest():
 	current_active_quest = QuestData.new()
 	current_active_quest.make_random(len(completed_quests))
-	current_active_quest.print_quest()
 
 func complete_quest():
 	completed_quests.append(current_active_quest)
@@ -81,7 +83,7 @@ func get_end_quest() -> QuestData:
 
 
 class QuestData:
-	var requirements : Dictionary[ItemData, float] # Crops0    
+	var requirements : Dictionary[ItemData, float] # Crops
 	var rewards : Dictionary[ItemData, float] # Plots and Workers (TODO : Should there be a choice of two different ones?)
 	var timeline : int # In days? Or by a specific day of a season?
 	var difficulty : int
@@ -95,34 +97,31 @@ class QuestData:
 		timeline -= 1
 
 	func make_random(_difficulty):
-		# TODO: Create a difficulty scale for both requirements and rewards
-		# Requirements
-		difficulty = _difficulty 
-		set_quest_requirements()
-
-		# Rewards
-		set_quest_rewards()
-
-		# Timeline
+		difficulty = floor(_difficulty/DIFFICULTY_DIV) + 1
 		timeline = randi_range(3, 4) * 4
-
-		quest_name = str("General Quest : ", difficulty)
+		quest_name = str("General Quest ", difficulty)
 
 	func set_quest_rewards():
-		var reward_score = -1
-		while reward_score < floor(difficulty/4):
-			if [true, false].pick_random():
-				var v = Globals.VILLAGER
-				if rewards.has(v):
-					rewards[v] = rewards[v] + 1
-				else:
-					rewards[v] = 1
-				reward_score += 1
+		var possible_rewards = Globals.PLOTS.duplicate()
+		possible_rewards.append(Globals.VILLAGER)
 
-			#TODO : Rate plots by grid size and grant quantity based on that
-			var p = Globals.PLOTS.pick_random()
-			rewards[p] = 1
-			reward_score += 1
+		# Limit possible rewards to those that are weighted lower than the difficulty
+		for item in possible_rewards:
+			if item.reward_weight > difficulty:
+				possible_rewards.erase(item)
+
+		var reward_score = -1
+		while reward_score < difficulty:
+			var i = possible_rewards.pick_random()
+			if i.reward_weight > difficulty - reward_score:
+				possible_rewards.erase(i)
+				continue
+
+			if rewards.has(i):
+				rewards[i] = rewards[i] + 1
+			else:
+				rewards[i] = 1
+			reward_score += i.reward_weight
 
 	func set_quest_requirements():
 		var crops = []
@@ -136,8 +135,8 @@ class QuestData:
 		if len(crops) == 0:
 			return
 
-		var d = -1
-		while d < floor(difficulty/4):
+		var score = -1
+		while score < difficulty:
 			var c = crops.pick_random()
 			var limit = Inventory.get_item_quantity(c)
 			var amount = randi_range(ceil(limit/6), ceil(limit/4))
@@ -145,15 +144,15 @@ class QuestData:
 				requirements[c] = min(requirements[c] + amount, limit/2)
 			else:
 				requirements[c] = amount
-			d += 1
+			score += 1
 
 	func make_random_end_quest():
 		var crops = Globals.CROP_TYPES
+		var difficulty = 1 #TODO : Can be driven by user settings
 		for i in len(crops):
-			requirements[crops[i]] = randi_range(10, 20) * 12.0
+			requirements[crops[i]] = (10 * difficulty) * randi_range(8, 12)
 
-		timeline = Calendar.calc_year_length() * randi_range(2, 4) 
-		#TODO : Use a difficulty factor select number of years required
+		timeline = Calendar.calc_year_length() * difficulty
 
 		quest_name = "End Quest"
 

@@ -17,6 +17,9 @@ signal toggle_quest_ui
 signal accept_completed_quest
 signal decline_completed_quest
 
+signal accept_end_quest
+signal decline_end_quest
+
 # Management
 signal pop_up_action(action)
 signal request_worker(amount)

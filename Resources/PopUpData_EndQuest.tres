@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="PopUpData" load_steps=7 format=3 uid="uid://bgr1h5yho4jib"]
+
+[ext_resource type="Script" uid="uid://d1i8kpnmf53tj" path="res://Scripts/PopUpInformationData.gd" id="1_prv0m"]
+[ext_resource type="Script" uid="uid://ctqhql2f1rtwr" path="res://Scripts/PopUpOptionData.gd" id="2_fg1jo"]
+[ext_resource type="Script" uid="uid://dul1i7pgw3chd" path="res://Scripts/PopUpData.gd" id="3_gsgjl"]
+
+[sub_resource type="Resource" id="Resource_prv0m"]
+script = ExtResource("1_prv0m")
+metadata/_custom_type_script = "uid://d1i8kpnmf53tj"
+
+[sub_resource type="Resource" id="Resource_fg1jo"]
+script = ExtResource("2_fg1jo")
+button_label = "Accept"
+event_signal = "accept_end_quest"
+metadata/_custom_type_script = "uid://ctqhql2f1rtwr"
+
+[sub_resource type="Resource" id="Resource_gsgjl"]
+script = ExtResource("2_fg1jo")
+button_label = "Decline"
+event_signal = "decline_end_quest"
+metadata/_custom_type_script = "uid://ctqhql2f1rtwr"
+
+[resource]
+script = ExtResource("3_gsgjl")
+scene_path = "uid://ddinj2ny3il1m"
+pause_game = true
+title = "The Feast of {GOD_NAME}"
+description = "The holy day is upon us! Have you prepared the sacrifice for the Feast of {GOD_NAME}? "
+use_portrait = true
+option_data = Array[ExtResource("2_fg1jo")]([SubResource("Resource_fg1jo"), SubResource("Resource_gsgjl")])
+information_data = Array[ExtResource("1_prv0m")]([SubResource("Resource_prv0m")])
+metadata/_custom_type_script = "uid://dul1i7pgw3chd"

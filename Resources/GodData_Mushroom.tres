@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GodData" load_steps=2 format=3 uid="uid://c37i0dfrhfpkl"]
+
+[ext_resource type="Script" uid="uid://begviarr7i06v" path="res://Scripts/GodData.gd" id="1_vvpwo"]
+
+[resource]
+script = ExtResource("1_vvpwo")
+god_name = "Mushroom"
+metadata/_custom_type_script = "uid://begviarr7i06v"

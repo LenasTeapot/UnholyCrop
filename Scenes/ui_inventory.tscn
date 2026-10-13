@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cohc2a3m0wc36"]
 
 [ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_o4p23"]
-[ext_resource type="Script" uid="uid://ccaddgp73dkv5" path="res://Scenes/Global_Label.gd" id="2_ptqgb"]
+[ext_resource type="Script" uid="uid://ccaddgp73dkv5" path="res://Scripts/UI/Global_Label.gd" id="2_ptqgb"]
 [ext_resource type="PackedScene" uid="uid://i2l3hoavv6sw" path="res://Scenes/ui_inventory_item.tscn" id="2_r6pni"]
 [ext_resource type="Resource" uid="uid://ywcpk4k2lxt0" path="res://Resources/Item_Corn.tres" id="3_c5rk8"]
 [ext_resource type="Resource" uid="uid://cg2qmbr3r1f0p" path="res://Resources/Item_Tomato.tres" id="4_578bi"]
