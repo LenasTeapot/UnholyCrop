@@ -15,7 +15,9 @@ class_name Placeable_Plot
 var current_progress := 0.0
 const base_array : Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
 
-var workers : int = 0
+var workers := 0
+
+var modifiers : Array[ProductionModifier]
 
 func _ready():
 	super()
@@ -55,15 +57,24 @@ func remove_plot():
 	add_worker(0 - workers)
 	queue_free()
 		
-func add_worker(amount):
-	### TODO: Create a modifier for workers, and apply to crop production
+func add_worker(amount): # Will also remove a worker if amount is negative
 	if workers == 0 and amount <= 0:
 		return
 	if workers == plot_data.max_workers and amount > 0:
 		return
 	if Inventory.request_worker(amount): # This also updates the global count of workers
 		workers = clamp(workers + amount, 0, plot_data.max_workers)
-		# TODO: Make worker move to plot and move around it???
+		if amount > 0:
+			modifiers.append(Modifier_Worker.new())
+		elif amount < 0:
+			for count in abs(amount):
+				for m in modifiers:
+					if m is Modifier_Worker:
+						modifiers.erase(m)
+						break
+
+	update_sprites()
+
 
 func change_crop(new_crop_data : ItemData_Crop):
 	if new_crop_data == item:
@@ -76,9 +87,9 @@ func _on_day_end(_current_day):
 	### It would be good to show which crops are not growing, so player understands how many will be produced
 	current_progress += 1
 	if current_progress > item.growth_time:
-		var mod = item.growth_modifiers[Calendar.get_current_season()] # Move to crop data class?
-		var worker_mod = (float(workers) / float(plot_data.max_workers))
-		produce_crop((plot_data.grid_size * plot_data.grid_size) * worker_mod * mod)
+		# TODO : Create season modifiers?
+		#var mod = item.growth_modifiers[Calendar.get_current_season()] # Move to crop data class?
+		produce_crop()
 		current_progress = 0
 	update_sprites()
 
@@ -96,15 +107,27 @@ func release_hold(keep_position : bool):
 	super(keep_position)
 	get_parent().bake_navigation_polygon()
 
-func produce_crop(amount):
+func first_placement():
+	add_worker(1)
+	#TODO : Trigger pop up??
+
+func produce_crop():
+	var amount = calculate_production()
+
 	print("Produce ", amount, " ", item.item_name)
 	Inventory.request_add_item.emit(item, amount, true)
 	if amount == 0:
 		return
-		
+
 	%GPUParticles2D.texture = item.icon
 	%GPUParticles2D.amount = amount
 	%GPUParticles2D.emitting = true
+
+func calculate_production() -> int:
+	var amount = 0
+	for m in modifiers:
+		amount = m.run(plot_data.grid_size, amount)
+	return amount
 
 func update_sprites():
 	%Crop_Icon.texture = item.icon
@@ -112,10 +135,15 @@ func update_sprites():
 	var children = %Plants.get_children()
 	for c in children:
 		c.queue_free()
+	var count = 0
+	var max_product = calculate_production()
 	for v in range(plot_data.grid_size):
+		if count >= max_product:
+			break
 		for h in range(plot_data.grid_size):
 			var sprite = Sprite2D.new()
 			sprite.texture = item.get_sprite_by_progress(current_progress)
 			%Plants.add_child(sprite)
 			var offset = (plot_data.grid_size/2.0)*Globals.GRID_SIZE
 			sprite.position = Vector2((h * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2, (v * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2)
+			count +=1

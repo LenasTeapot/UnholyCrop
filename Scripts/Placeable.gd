@@ -3,6 +3,7 @@ class_name Placeable
 
 @onready var area : Area2D = self.find_child("Area2D")
 
+var has_been_placed := false
 var is_held := false
 var held_offset := Vector2.ZERO
 var can_release_here := true
@@ -45,6 +46,13 @@ func release_hold(keep_position : bool):
 		if is_held:
 			position = pickup_position
 		is_held = false
+
+	if not has_been_placed:
+		first_placement()
+		has_been_placed = true
+
+func first_placement():
+	pass
 	
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event.is_action_pressed("select"):

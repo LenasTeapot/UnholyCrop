@@ -148,11 +148,10 @@ class QuestData:
 
 	func make_random_end_quest():
 		var crops = Globals.CROP_TYPES
-		var difficulty = 1 #TODO : Can be driven by user settings
 		for i in len(crops):
-			requirements[crops[i]] = (10 * difficulty) * randi_range(8, 12)
+			requirements[crops[i]] = (10) * randi_range(8, 12)
 
-		timeline = Calendar.calc_year_length() * difficulty
+		timeline = Calendar.calc_year_length() * 4
 
 		quest_name = "End Quest"
 

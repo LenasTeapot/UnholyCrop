@@ -16,11 +16,22 @@ extends Node2D
 
 
 func _ready():
+	# TODO : Set up some settings, remeber any changes etc
+	var screen_size = DisplayServer.screen_get_size()
+	if screen_size.x <= DisplayServer.window_get_size().x:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
 	Events.add_villager.connect(_on_add_villager)
 	Events.add_plot.connect(_on_add_plot)
 	Calendar.load_game(_seasons)
 	Inventory.load_game(starting_villager_count)
 	Quests.load_game()
+
+
+func _physics_process(_delta: float):
+	if Input.is_action_just_pressed("close"):
+		_exit_game()
 
 func _new_game():
 	pass
