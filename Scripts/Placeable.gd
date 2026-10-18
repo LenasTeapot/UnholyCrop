@@ -1,7 +1,5 @@
-extends Node2D
+extends Area2D
 class_name Placeable
-
-@onready var area : Area2D = self.find_child("Area2D")
 
 var has_been_placed := false
 var is_held := false
@@ -15,12 +13,9 @@ var interface : Node
 #TODO: Add an Interface node, as a variable for swapping.
 
 func _ready():
-	if area != null:
-		area.input_event.connect(_on_input_event)
-		area.mouse_entered.connect(hover_begin)
-		area.mouse_exited.connect(hover_end)
-	else:
-		printerr("This placeable does not have an Area2D!")
+	self.input_event.connect(_on_input_event)
+	self.mouse_entered.connect(hover_begin)
+	self.mouse_exited.connect(hover_end)
 
 func _process(_delta):
 	if not is_held:
@@ -33,7 +28,7 @@ func held():
 	var mouse_pos = get_global_mouse_position() + held_offset
 	position = snap_pos_to_grid(mouse_pos)
 	#If area overlaps any other area, do not allow release
-	if area.has_overlapping_areas():
+	if self.has_overlapping_areas():
 		can_release_here = false
 	else:
 		can_release_here = true
@@ -56,7 +51,7 @@ func first_placement():
 	
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event.is_action_pressed("select"):
-		if area.has_overlapping_areas():
+		if self.has_overlapping_areas():
 			return
 		is_held = true
 		held_offset = position - get_global_mouse_position()

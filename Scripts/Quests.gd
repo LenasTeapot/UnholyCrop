@@ -53,6 +53,9 @@ func new_quest():
 	current_active_quest.make_random(len(completed_quests))
 
 func complete_quest():
+	if len(current_active_quest.requirements) == 0:
+		new_quest()
+		return
 	completed_quests.append(current_active_quest)
 	Events.request_pop_up.emit(pop_up_data, self)
 

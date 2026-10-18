@@ -89,7 +89,7 @@ func _on_game_pause():
 	set_timescale()
 	
 func _on_game_play():
-	print("Play game")
+	#print("Play game")
 	is_paused = false
 	set_timescale()
 

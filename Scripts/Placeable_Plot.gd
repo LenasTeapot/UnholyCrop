@@ -5,12 +5,9 @@ class_name Placeable_Plot
 @export var plot_data : ItemData_Plot:
 	set(value):
 		plot_data = value
-		update()
+		update_size()
 
-@export var item : ItemData_Crop:
-	set(value):
-		item = value
-		update()
+@export var item : ItemData_Crop
 
 var current_progress := 0.0
 const base_array : Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
@@ -25,10 +22,9 @@ func _ready():
 		return
 
 func _init():
-	update()
 	Calendar.day_end.connect(_on_day_end)
 	
-func update():
+func update_size():
 	if has_node("%NinePatchRect"):
 		var new_size: float = 16 + plot_data.grid_size*16
 		
@@ -46,9 +42,6 @@ func update():
 			var new_v = Vector2(v.x * (8.0 * plot_data.grid_size + 8.0), v.y * (8.0 * plot_data.grid_size + 8.0))
 			new_array.append(new_v)
 		%NavigationObstacle2D.vertices = new_array
-
-		if not item:
-			return
 		
 		update_sprites()
 
@@ -56,6 +49,10 @@ func remove_plot():
 	Inventory.request_add_item.emit(plot_data, 1, true)
 	add_worker(0 - workers)
 	queue_free()
+
+func add_modifier(mod_in):
+	modifiers.append(mod_in)
+	update_sprites()
 		
 func add_worker(amount): # Will also remove a worker if amount is negative
 	if workers == 0 and amount <= 0:
@@ -75,7 +72,6 @@ func add_worker(amount): # Will also remove a worker if amount is negative
 
 	update_sprites()
 
-
 func change_crop(new_crop_data : ItemData_Crop):
 	if new_crop_data == item:
 		return
@@ -84,14 +80,19 @@ func change_crop(new_crop_data : ItemData_Crop):
 	update_sprites()
 
 func _on_day_end(_current_day):
-	### It would be good to show which crops are not growing, so player understands how many will be produced
 	current_progress += 1
 	if current_progress > item.growth_time:
 		# TODO : Create season modifiers?
 		#var mod = item.growth_modifiers[Calendar.get_current_season()] # Move to crop data class?
 		produce_crop()
 		current_progress = 0
+
 	update_sprites()
+
+	var mods = []
+	for m in modifiers:
+		mods.append(get_object_class_name(m))
+	print(mods)
 
 func hover_begin():
 	if Calendar.is_paused:
@@ -113,37 +114,63 @@ func first_placement():
 
 func produce_crop():
 	var amount = calculate_production()
+	remove_temp_modifiers()
 
 	print("Produce ", amount, " ", item.item_name)
 	Inventory.request_add_item.emit(item, amount, true)
-	if amount == 0:
-		return
 
+	if amount <= 0:
+		return
 	%GPUParticles2D.texture = item.icon
 	%GPUParticles2D.amount = amount
 	%GPUParticles2D.emitting = true
 
 func calculate_production() -> int:
+	#TODO : Should adding a worker only increase yield if they are there for the full production cycle?
 	var amount = 0
 	for m in modifiers:
 		amount = m.run(plot_data.grid_size, amount)
-	return amount
+	return max(amount, 0)
+
+func remove_temp_modifiers():
+	for m in modifiers:
+		if m.temporary:
+			modifiers.erase(m)
 
 func update_sprites():
+	# TODO: Have a way to track individual tiles.
+	if not item:
+		return
+
+	# Update UI Icon
 	%Crop_Icon.texture = item.icon
 
+	# Update sprites in the plot's field
 	var children = %Plants.get_children()
 	for c in children:
 		c.queue_free()
 	var count = 0
 	var max_product = calculate_production()
 	for v in range(plot_data.grid_size):
-		if count >= max_product:
-			break
 		for h in range(plot_data.grid_size):
+			if count >= max_product:
+				break
 			var sprite = Sprite2D.new()
 			sprite.texture = item.get_sprite_by_progress(current_progress)
 			%Plants.add_child(sprite)
 			var offset = (plot_data.grid_size/2.0)*Globals.GRID_SIZE
 			sprite.position = Vector2((h * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2, (v * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2)
 			count +=1
+
+func get_object_class_name(obj: Object) -> String:
+	if obj == null:
+		return ""
+		
+	var script = obj.get_script()
+	if script and script.has_method("get_global_name"):
+		var custom_name = script.get_global_name()
+		if custom_name != "":
+			return custom_name
+			
+	# Fallback to the native engine class name (e.g., "Node2D", "Sprite2D")
+	return obj.get_class() 

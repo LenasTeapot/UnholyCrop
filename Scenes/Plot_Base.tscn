@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ditkpi5bp4n51"]
+[gd_scene load_steps=27 format=3 uid="uid://ditkpi5bp4n51"]
 
 [ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_7vwla"]
 [ext_resource type="Script" uid="uid://d4d6gpp4ys0l4" path="res://Scripts/Placeable_Plot.gd" id="1_xc04u"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dul1i7pgw3chd" path="res://Scripts/PopUpData.gd" id="6_ls7g8"]
 [ext_resource type="Script" uid="uid://d1i8kpnmf53tj" path="res://Scripts/PopUpInformationData.gd" id="6_y80ex"]
 [ext_resource type="Script" uid="uid://ctqhql2f1rtwr" path="res://Scripts/PopUpOptionData.gd" id="7_y8753"]
+[ext_resource type="TileSet" uid="uid://cyevod20p2cef" path="res://Tileset/farm.tres" id="9_y8753"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wd1b"]
 size = Vector2(32, 32)
@@ -63,10 +64,14 @@ initial_velocity_min = 40.0
 initial_velocity_max = 40.0
 gravity = Vector3(0, 60, 0)
 
-[node name="Plot_Base" type="Node2D"]
+[node name="Plot_Base" type="Area2D"]
 z_index = -1
 script = ExtResource("1_xc04u")
 item = ExtResource("2_lb2qu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_7wd1b")
 
 [node name="Outline" type="NinePatchRect" parent="."]
 unique_name_in_owner = true
@@ -82,13 +87,7 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 6
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_7wd1b")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Area2D"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 unique_name_in_owner = true
 offset_left = -16.0
 offset_top = -16.0
@@ -101,7 +100,7 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 6
 
-[node name="Settings" type="VBoxContainer" parent="Area2D/NinePatchRect"]
+[node name="Settings" type="VBoxContainer" parent="NinePatchRect"]
 unique_name_in_owner = true
 show_behind_parent = true
 layout_mode = 0
@@ -111,7 +110,7 @@ offset_right = 1.0
 offset_bottom = 38.0
 theme_override_constants/separation = 2
 
-[node name="NinePatchRect3" type="NinePatchRect" parent="Area2D/NinePatchRect/Settings"]
+[node name="NinePatchRect3" type="NinePatchRect" parent="NinePatchRect/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_7vwla")
@@ -121,7 +120,7 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 6
 
-[node name="Crop_Icon" type="TextureRect" parent="Area2D/NinePatchRect/Settings/NinePatchRect3"]
+[node name="Crop_Icon" type="TextureRect" parent="NinePatchRect/Settings/NinePatchRect3"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -132,7 +131,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_7wd1b")
 stretch_mode = 3
 
-[node name="Button2" type="Button" parent="Area2D/NinePatchRect/Settings/NinePatchRect3"]
+[node name="Button2" type="Button" parent="NinePatchRect/Settings/NinePatchRect3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,7 +146,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_amcu8")
 script = ExtResource("5_7wd1b")
 pop_up_data = SubResource("Resource_7wd1b")
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="Area2D/NinePatchRect/Settings"]
+[node name="NinePatchRect2" type="NinePatchRect" parent="NinePatchRect/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_7vwla")
@@ -157,7 +156,7 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 6
 
-[node name="TextureRect" type="TextureRect" parent="Area2D/NinePatchRect/Settings/NinePatchRect2"]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/Settings/NinePatchRect2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -167,7 +166,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_a5nwv")
 stretch_mode = 3
 
-[node name="Button" type="Button" parent="Area2D/NinePatchRect/Settings/NinePatchRect2"]
+[node name="Button" type="Button" parent="NinePatchRect/Settings/NinePatchRect2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,10 +181,16 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_x5c6w")
 script = ExtResource("5_7wd1b")
 pop_up_data = SubResource("Resource_y8753")
 
-[node name="Plants" type="Node2D" parent="Area2D"]
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 3, 0, 5, 0, 0, 0)
+tile_set = ExtResource("9_y8753")
+
+[node name="Plants" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Area2D"]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 unique_name_in_owner = true
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 affect_navigation_mesh = true

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1fjn3lvmo8wi"]
+
+[ext_resource type="Script" uid="uid://bk4d2ov3usjcb" path="res://Scripts/Placeable.gd" id="1_65fre"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="2_j17s3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljkaa"]
+size = Vector2(44, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34wpg"]
+atlas = ExtResource("2_j17s3")
+region = Rect2(98, 112, 44, 16)
+
+[node name="Fence" type="Area2D"]
+script = ExtResource("1_65fre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ljkaa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_34wpg")
