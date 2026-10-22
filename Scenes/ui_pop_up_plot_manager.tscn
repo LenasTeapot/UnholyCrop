@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bebtj3hp18h51"]
+[gd_scene load_steps=23 format=3 uid="uid://bebtj3hp18h51"]
 
 [ext_resource type="PackedScene" uid="uid://dh68dtcbepifl" path="res://Scenes/ui_pop_up.tscn" id="1_tu2pb"]
 [ext_resource type="Script" uid="uid://dss0k5omxj65y" path="res://Scripts/UI/ui_plot_manager.gd" id="2_4nwjp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://2b2tbm1e5kli" path="res://Scripts/UI/UI_generic_button.gd" id="4_4nwjp"]
 [ext_resource type="Script" uid="uid://dlii022lwc742" path="res://Scripts/Action_AssignWorker.gd" id="5_hmtbx"]
 [ext_resource type="Script" uid="uid://bmmb2h3nb8ol7" path="res://Scripts/Action_ConfirmCrop.gd" id="8_k5xew"]
+[ext_resource type="Script" uid="uid://b1bmqrshyxxd0" path="res://Scripts/Action_RemovePlot.gd" id="9_rox70"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5xew"]
 atlas = ExtResource("2_esd2w")
@@ -45,6 +46,14 @@ region = Rect2(1, 1, 22, 22)
 script = ExtResource("8_k5xew")
 metadata/_custom_type_script = "uid://bmmb2h3nb8ol7"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8b3n"]
+atlas = ExtResource("3_hmtbx")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="Resource" id="Resource_stmm2"]
+script = ExtResource("9_rox70")
+metadata/_custom_type_script = "uid://b1bmqrshyxxd0"
+
 [node name="UI_PopUp" instance=ExtResource("1_tu2pb")]
 script = ExtResource("2_4nwjp")
 
@@ -59,9 +68,9 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 24
+theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 12
 
 [node name="MarginContainer_MarginContainer2#VBoxContainer" type="VBoxContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2" index="0"]
 layout_mode = 2
@@ -136,14 +145,14 @@ texture_normal = SubResource("AtlasTexture_k5xew")
 stretch_mode = 3
 flip_h = true
 
-[node name="MarginContainer_MarginContainer2_VBoxContainer#Confirm" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="2"]
+[node name="MarginContainer2" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 
-[node name="MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm" index="0"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer2" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_rox70")
@@ -152,7 +161,7 @@ patch_margin_top = 6
 patch_margin_right = 4
 patch_margin_bottom = 8
 
-[node name="Confirm_Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm/MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" index="0"]
+[node name="Confirm_Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer2/NinePatchRect" index="0"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 196.0
@@ -168,7 +177,7 @@ script = ExtResource("4_4nwjp")
 signal_name = "pop_up_confirmed"
 action = SubResource("Resource_rox70")
 
-[node name="MarginContainer_MarginContainer2_VBoxContainer_Confirm_NinePatchRect#Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer_MarginContainer2_VBoxContainer#Confirm/MarginContainer_MarginContainer2_VBoxContainer_Confirm#NinePatchRect" index="1"]
+[node name="Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer2/NinePatchRect" index="1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,6 +186,50 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
 theme_override_font_sizes/font_size = 8
-text = "Ok"
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer" index="3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_v8b3n")
+patch_margin_left = 7
+patch_margin_top = 9
+patch_margin_right = 7
+patch_margin_bottom = 8
+
+[node name="Remove_Button" type="Button" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer/NinePatchRect" index="0"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8b3n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_stmm2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kceyf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tsyso")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pbkrw")
+script = ExtResource("4_4nwjp")
+signal_name = "pop_up_confirmed"
+action = SubResource("Resource_stmm2")
+
+[node name="Label" type="Label" parent="UI_PopUp/MarginContainer/MarginContainer#MarginContainer2/MarginContainer_MarginContainer2#VBoxContainer/MarginContainer/NinePatchRect" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
+theme_override_font_sizes/font_size = 8
+text = "Remove Plot"
 horizontal_alignment = 1
 vertical_alignment = 1

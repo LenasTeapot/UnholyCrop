@@ -16,9 +16,7 @@ const VILLAGER : ItemData = preload("res://Resources/Item_Villager.tres")
 
 const PLOTS : Array[ItemData] = [
 	preload("res://Resources/Item_Plot_2.tres"),
-	preload("res://Resources/Item_Plot_3.tres"),
 	preload("res://Resources/Item_Plot_4.tres"),
-	preload("res://Resources/Item_Plot_5.tres")
 ]
 
 const GOD_OPTIONS = [

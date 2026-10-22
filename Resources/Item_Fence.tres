@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://tdx5j6xlosvy"]
+
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_8u2nu"]
+[ext_resource type="Script" uid="uid://bjxdyxdtf6d2a" path="res://Scripts/ItemData.gd" id="1_rp3qy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqgv6"]
+atlas = ExtResource("1_8u2nu")
+region = Rect2(98, 112, 15, 16)
+
+[resource]
+script = ExtResource("1_rp3qy")
+item_name = "Fence"
+description = "Keeps away pests."
+icon = SubResource("AtlasTexture_xqgv6")
+scene_path = "res://Scenes/Fence.tscn"
+metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"

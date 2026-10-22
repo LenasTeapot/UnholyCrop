@@ -26,4 +26,6 @@ signal request_worker(amount)
 signal add_villager
 signal add_plot(plot_data)
 
+signal rebake_navmesh
+
 #signal change_crop(plot_node, new_crop_data)

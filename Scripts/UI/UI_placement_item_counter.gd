@@ -1,12 +1,14 @@
 extends Control
 
-@export var plot_data : ItemData_Plot
+@export var item_data : ItemData
 var count : int = 0
 
 
 func _ready():
+	if item_data == null:
+		return
 	Inventory.update_ui.connect(_on_update_ui)
-	%Button.pressed.connect(_on_pressed)
+	%Button.button_down.connect(_on_down)
 
 func set_empty():
 	if count <= 0:
@@ -15,13 +17,12 @@ func set_empty():
 		modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_update_ui():
-	count = int(Inventory.get_item_quantity(plot_data))
+	count = int(Inventory.get_item_quantity(item_data))
 	%Label_Count.text = str(count)
-	%Label_PlotSize.text = str(plot_data.grid_size, "x", plot_data.grid_size)
-	%TextureRect.texture = plot_data.icon
+	%TextureRect.texture = item_data.icon
 	set_empty()
 
-func _on_pressed():
+func _on_down():
 	if count <= 0:
 		return
-	Inventory.request_spawn_item.emit(plot_data)
+	Inventory.request_spawn_item.emit(item_data)

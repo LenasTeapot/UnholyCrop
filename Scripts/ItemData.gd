@@ -5,5 +5,6 @@ class_name ItemData
 @export var item_name : String
 @export_multiline var description : String
 @export var icon : Texture2D
+@export_file_path var scene_path : String
 @export_category("Reward Settings")
 @export var reward_weight : int = 1

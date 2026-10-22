@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://ditkpi5bp4n51"]
+[gd_scene load_steps=28 format=3 uid="uid://ditkpi5bp4n51"]
 
 [ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="1_7vwla"]
 [ext_resource type="Script" uid="uid://d4d6gpp4ys0l4" path="res://Scripts/Placeable_Plot.gd" id="1_xc04u"]
 [ext_resource type="Resource" uid="uid://cg2qmbr3r1f0p" path="res://Resources/Item_Tomato.tres" id="2_lb2qu"]
+[ext_resource type="Resource" uid="uid://cqvubl07114kr" path="res://Resources/PopUpData_Plot.tres" id="3_x5c6w"]
 [ext_resource type="Texture2D" uid="uid://c1litlb2po1lr" path="res://Sprites/UIpackSheet_transparent.png" id="4_eefaw"]
 [ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="4_lb2qu"]
 [ext_resource type="Script" uid="uid://c0mqempdothts" path="res://Scripts/UI/UI_request_pop_up_button.gd" id="5_7wd1b"]
@@ -68,6 +69,7 @@ gravity = Vector3(0, 60, 0)
 z_index = -1
 script = ExtResource("1_xc04u")
 item = ExtResource("2_lb2qu")
+pop_up_data = ExtResource("3_x5c6w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -102,6 +104,7 @@ patch_margin_bottom = 6
 
 [node name="Settings" type="VBoxContainer" parent="NinePatchRect"]
 unique_name_in_owner = true
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_left = -16.0

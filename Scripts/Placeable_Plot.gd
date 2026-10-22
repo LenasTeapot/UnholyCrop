@@ -2,18 +2,18 @@
 extends Placeable
 class_name Placeable_Plot
 
+const base_array : Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
+
 @export var plot_data : ItemData_Plot:
 	set(value):
 		plot_data = value
 		update_size()
 
 @export var item : ItemData_Crop
+@export var pop_up_data : PopUpData = preload("res://Resources/PopUpData_Plot.tres")
 
 var current_progress := 0.0
-const base_array : Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
-
 var workers := 0
-
 var modifiers : Array[ProductionModifier]
 
 func _ready():
@@ -23,6 +23,10 @@ func _ready():
 
 func _init():
 	Calendar.day_end.connect(_on_day_end)
+
+func load_data(data_in : ItemData):
+	plot_data = data_in
+	super(data_in)
 	
 func update_size():
 	if has_node("%NinePatchRect"):
@@ -45,10 +49,15 @@ func update_size():
 		
 		update_sprites()
 
-func remove_plot():
+func single_click():
+	super()
+	if pop_up_data != null:
+		Events.request_pop_up.emit(pop_up_data, self)
+
+func remove():
 	Inventory.request_add_item.emit(plot_data, 1, true)
 	add_worker(0 - workers)
-	queue_free()
+	super()
 
 func add_modifier(mod_in):
 	modifiers.append(mod_in)
@@ -89,28 +98,23 @@ func _on_day_end(_current_day):
 
 	update_sprites()
 
+func print_mods():
 	var mods = []
 	for m in modifiers:
 		mods.append(get_object_class_name(m))
 	print(mods)
 
-func hover_begin():
-	if Calendar.is_paused:
-		return
+func pickup():
+	super()
 	%Outline.visible = true
 
-func hover_end():
-	if Calendar.is_paused:
-		return
+func post_hold():
+	super()
 	%Outline.visible = false
-
-func release_hold(keep_position : bool):
-	super(keep_position)
-	get_parent().bake_navigation_polygon()
 
 func first_placement():
 	add_worker(1)
-	#TODO : Trigger pop up??
+	single_click()
 
 func produce_crop():
 	var amount = calculate_production()
@@ -162,6 +166,8 @@ func update_sprites():
 			sprite.position = Vector2((h * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2, (v * Globals.GRID_SIZE) - offset + Globals.GRID_SIZE/2)
 			count +=1
 
+
+# Move to generic lib or Globals
 func get_object_class_name(obj: Object) -> String:
 	if obj == null:
 		return ""

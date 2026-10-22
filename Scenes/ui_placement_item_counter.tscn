@@ -69,16 +69,6 @@ layout_mode = 2
 theme_override_constants/separation = -4
 alignment = 2
 
-[node name="Label_PlotSize" type="Label" parent="UI_Placement2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.02745098, 0.09411765, 0.12941177, 1)
-theme_override_font_sizes/font_size = 8
-text = "2x2"
-horizontal_alignment = 1
-
 [node name="Label_Count" type="Label" parent="UI_Placement2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -102,3 +92,4 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5w8ff")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8xijo")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_qsn7x")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g83il")
+action_mode = 0

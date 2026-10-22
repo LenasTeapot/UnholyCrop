@@ -1,20 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1fjn3lvmo8wi"]
+[gd_scene load_steps=7 format=3 uid="uid://d1fjn3lvmo8wi"]
 
-[ext_resource type="Script" uid="uid://bk4d2ov3usjcb" path="res://Scripts/Placeable.gd" id="1_65fre"]
+[ext_resource type="Script" uid="uid://denww1douhfeh" path="res://Scripts/Placeable_Fence.gd" id="1_65fre"]
 [ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="2_j17s3"]
+[ext_resource type="Texture2D" uid="uid://dadec1uoaiwtb" path="res://Sprites/PeterMilko-Frames.png" id="2_ljkaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljkaa"]
 size = Vector2(44, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5p4k"]
+atlas = ExtResource("2_ljkaa")
+region = Rect2(3, 3, 18, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34wpg"]
 atlas = ExtResource("2_j17s3")
 region = Rect2(98, 112, 44, 16)
 
 [node name="Fence" type="Area2D"]
+rotation = 1.5707964
 script = ExtResource("1_65fre")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 1.0
+vertices = PackedVector2Array(-22, -8, 22, -8, 22, 8, -22, 8)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ljkaa")
+
+[node name="Outline" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -23.0
+offset_top = -9.0
+offset_right = 23.0
+offset_bottom = 9.0
+texture = SubResource("AtlasTexture_o5p4k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_34wpg")

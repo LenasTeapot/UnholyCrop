@@ -19,6 +19,7 @@ func _ready():
 
 	#Placeholder start inventory
 	update_inventory_item(load("res://Resources/Item_Plot_2.tres"), 2)
+	update_inventory_item(load("res://Resources/Item_Fence.tres"), 2)
 	
 func _on_request_add_item(_item_data, _quantity, should_update):
 	update_inventory_item(_item_data, _quantity)

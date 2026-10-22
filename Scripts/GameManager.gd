@@ -23,7 +23,7 @@ func _ready():
 
 
 	Events.add_villager.connect(_on_add_villager)
-	Events.add_plot.connect(_on_add_plot)
+	Events.add_plot.connect(on_add_item)
 	Calendar.load_game(_seasons)
 	Inventory.load_game(starting_villager_count)
 	Quests.load_game()
@@ -51,9 +51,21 @@ func _on_add_villager():
 	%NPCs.add_child(villager)
 	villager.position = %Village.get_random_point_in_bounds()
 
+
+### Depreciate!
 func _on_add_plot(plot_data):
 	var plot = load(plot_data.scene_path).instantiate()
 	%NavigationRegion2D.add_child(plot)
 	plot.plot_data = plot_data
 	plot.global_position = get_global_mouse_position()
-	plot.is_held = true
+	plot.is_held = true # BAD
+
+func on_add_item(item_data : ItemData):
+	if item_data == null:
+		return
+	var item = load(item_data.scene_path).instantiate()
+	%NavigationRegion2D.add_child(item)
+	item.global_position = get_global_mouse_position()
+	if item.has_method("load_data"):
+		item.load_data(item_data)
+
