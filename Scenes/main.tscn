@@ -1,13 +1,8 @@
-[gd_scene load_steps=24 format=4 uid="uid://ct1gmdlm1wmbp"]
+[gd_scene load_steps=20 format=4 uid="uid://ct1gmdlm1wmbp"]
 
 [ext_resource type="Script" uid="uid://dkffvel7aw48i" path="res://Scripts/GameManager.gd" id="1_6bp64"]
 [ext_resource type="TileSet" uid="uid://c3bk5in2tk7dk" path="res://Tileset/ground.tres" id="1_kry3j"]
-[ext_resource type="Script" uid="uid://b1obkrf26wbcn" path="res://Scripts/Season.gd" id="2_fdnlq"]
-[ext_resource type="Resource" uid="uid://dec8qqbtlped5" path="res://Resources/Season_Spring.tres" id="3_jkdf5"]
-[ext_resource type="Resource" uid="uid://dfe5ojpv5e5hn" path="res://Resources/Season_Summer.tres" id="4_wsu2k"]
-[ext_resource type="Resource" uid="uid://86fdvib5e3nm" path="res://Resources/Season_Autumn.tres" id="5_k12tt"]
 [ext_resource type="Shader" uid="uid://dkgf3oxmgu66t" path="res://Shaders/PostProcess.gdshader" id="6_21xkr"]
-[ext_resource type="Resource" uid="uid://goni4x1f5hyo" path="res://Resources/Season_Winter.tres" id="6_h1bgf"]
 [ext_resource type="Script" uid="uid://d30qcqnusegy2" path="res://Scripts/CameraController.gd" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://g68quruwr20c" path="res://Scenes/Village.tscn" id="8_fevyy"]
 [ext_resource type="Script" uid="uid://npy8eeh1w6wc" path="res://Scripts/NavMesh.gd" id="8_hibaj"]
@@ -17,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dewehx5j1bo5h" path="res://Scripts/PostProcessManager.gd" id="14_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://cohc2a3m0wc36" path="res://Scenes/ui_inventory.tscn" id="15_b3802"]
 [ext_resource type="Script" uid="uid://b1aog48ntv61a" path="res://Scripts/HUD.gd" id="15_fevyy"]
+[ext_resource type="PackedScene" uid="uid://wxlye8alr3ov" path="res://Scenes/Location.tscn" id="15_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://cic3x01rdbpg7" path="res://Scenes/ui_placement.tscn" id="16_fevyy"]
 [ext_resource type="PackedScene" uid="uid://dmlfgbg43xknp" path="res://Scenes/ui_time.tscn" id="22_3pmx8"]
 
@@ -43,8 +39,6 @@ shader_parameter/value_invert = false
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6bp64")
-_seasons = Array[ExtResource("2_fdnlq")]([ExtResource("3_jkdf5"), ExtResource("4_wsu2k"), ExtResource("5_k12tt"), ExtResource("6_h1bgf")])
-starting_villager_count = 4
 
 [node name="AllTerrtain" type="Node2D" parent="."]
 z_index = -1
@@ -71,29 +65,32 @@ script = ExtResource("8_hibaj")
 unique_name_in_owner = true
 pop_up_data = ExtResource("9_hibaj")
 
+[node name="LocationTest" parent="NavigationRegion2D" instance=ExtResource("15_wsu2k")]
+position = Vector2(218, 103)
+
 [node name="NPCs" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="Spawners" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Spawners"]
+[node name="PestSpawner_E" type="Area2D" parent="Spawners"]
 script = ExtResource("10_b3802")
 object_scene = ExtResource("11_fevyy")
-interval = Vector2(4, 6)
+interval = Vector2(6, 10)
 direction = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawners/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawners/PestSpawner_E"]
 position = Vector2(414, -3)
 shape = SubResource("RectangleShape2D_k12tt")
 
-[node name="Area2D2" type="Area2D" parent="Spawners"]
+[node name="PestSpawner_W" type="Area2D" parent="Spawners"]
 script = ExtResource("10_b3802")
 object_scene = ExtResource("11_fevyy")
-interval = Vector2(2, 4)
+interval = Vector2(6, 10)
 direction = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawners/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawners/PestSpawner_W"]
 position = Vector2(-414, -3)
 shape = SubResource("RectangleShape2D_k12tt")
 

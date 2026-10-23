@@ -1,9 +1,6 @@
 @tool
 extends Node
 
-const DIFFICULTY_DIV = 3 # TODO: Make tunable from global settings? 
-var difficulty_increment = 4
-
 @warning_ignore("unused_signal")
 signal loaded
 
@@ -100,12 +97,13 @@ class QuestData:
 		timeline -= 1
 
 	func make_random(_difficulty):
-		difficulty = floor(_difficulty/DIFFICULTY_DIV) + 1
-		timeline = randi_range(3, 4) * 4
+		difficulty = floor(_difficulty/Globals.DIFFICULTY_DIV) + 1
+		#timeline = randi_range(3, 4) * 4
+		timeline = randi_range(Globals.MIN_DAYS_TO_QUEST, Globals.MAX_DAYS_TO_QUEST)
 		quest_name = str("General Quest ", difficulty)
 
 	func set_quest_rewards():
-		var possible_rewards = Globals.PLOTS.duplicate()
+		var possible_rewards = Globals.ITEMS.duplicate()
 		possible_rewards.append(Globals.VILLAGER)
 
 		# Limit possible rewards to those that are weighted lower than the difficulty
@@ -152,9 +150,9 @@ class QuestData:
 	func make_random_end_quest():
 		var crops = Globals.CROP_TYPES
 		for i in len(crops):
-			requirements[crops[i]] = (10) * randi_range(8, 12)
+			requirements[crops[i]] = randi_range(Globals.END_QUEST_MIN_FEAST_CROP, Globals.END_QUEST_MAX_FEAST_CROP)
 
-		timeline = Calendar.calc_year_length() * 4
+		timeline = Calendar.calc_year_length() * Globals.END_QUEST_LENGTH_YEARS
 
 		quest_name = "End Quest"
 

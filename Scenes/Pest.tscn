@@ -16,15 +16,19 @@ atlas = ExtResource("1_rl5ce")
 region = Rect2(33.309868, 161.82826, 14.024548, 13.356705)
 
 [node name="Pest" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("2_creature_pest")
 modifier = SubResource("Resource_x6c07")
 
 [node name="AreaDetector" type="Area2D" parent="."]
+position = Vector2(0, -6.5)
 collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetector"]
 shape = SubResource("CircleShape2D_3vblx")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -6.5)
 texture = SubResource("AtlasTexture_kev4k")

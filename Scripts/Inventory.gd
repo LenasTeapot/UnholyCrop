@@ -18,8 +18,10 @@ func _ready():
 	request_spawn_item.connect(_on_request_spawn_item)
 
 	#Placeholder start inventory
-	update_inventory_item(load("res://Resources/Item_Plot_2.tres"), 2)
+	update_inventory_item(load("res://Resources/Item_Plot_3.tres"), 2)
 	update_inventory_item(load("res://Resources/Item_Fence.tres"), 2)
+	update_inventory_item(load("res://Resources/Item_Scarecrow.tres"), 1)
+	
 	
 func _on_request_add_item(_item_data, _quantity, should_update):
 	update_inventory_item(_item_data, _quantity)
@@ -47,8 +49,8 @@ func get_item_quantity(_item_in):
 	else:
 		return 0
 
-func load_game(_starting_villager_count):
-	_on_request_add_item(Globals.VILLAGER, _starting_villager_count, true)
+func load_game():
+	_on_request_add_item(Globals.VILLAGER, Globals.START_VILLAGER_COUNT, true)
 
 func request_worker(amount: int) -> bool:
 	var new_total = available_workers + (0 - amount)

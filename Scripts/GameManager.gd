@@ -10,11 +10,6 @@ extends Node2D
 
 @export_file_path var npc_path : String = "res://Scenes/NPC_Base.tscn"
 
-@export_category("Settings")
-@export var _seasons : Array[Season]
-@export var starting_villager_count : int
-
-
 func _ready():
 	# TODO : Set up some settings, remeber any changes etc
 	var screen_size = DisplayServer.screen_get_size()
@@ -24,10 +19,11 @@ func _ready():
 
 	Events.add_villager.connect(_on_add_villager)
 	Events.add_plot.connect(on_add_item)
-	Calendar.load_game(_seasons)
-	Inventory.load_game(starting_villager_count)
+	Calendar.load_game()
+	Inventory.load_game()
 	Quests.load_game()
 
+	Events.rebake_navmesh.emit()
 
 func _physics_process(_delta: float):
 	if Input.is_action_just_pressed("close"):

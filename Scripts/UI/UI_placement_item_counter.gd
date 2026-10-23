@@ -1,6 +1,10 @@
 extends Control
 
-@export var item_data : ItemData
+@export var item_data : ItemData:
+	set(value):
+		item_data = value
+		_ready()
+
 var count : int = 0
 
 

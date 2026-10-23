@@ -1,9 +1,33 @@
 extends Node
 
-# Constants
+@warning_ignore_start("integer_division")
+
+# SETTINGS
+var START_VILLAGER_COUNT : int = 4
+
+# Calendar Settings
+var SEASONS : Array[Season] = [
+	preload("res://Resources/Season_Spring.tres"), 
+	preload("res://Resources/Season_Summer.tres"), 
+	preload("res://Resources/Season_Autumn.tres"), 
+	preload("res://Resources/Season_Winter.tres")
+	]
+var DAY_LENGTH := 4.0
+var SEASON_LENGTH := 24
+
+# Quest Settings
+var END_QUEST_LENGTH_YEARS := 2
+var MIN_DAYS_TO_QUEST := SEASON_LENGTH/4
+var MAX_DAYS_TO_QUEST := SEASON_LENGTH/3
+var DIFFICULTY_DIV := 3
+var END_QUEST_MIN_FEAST_CROP := 10 * 8 # Move multiplier?
+var END_QUEST_MAX_FEAST_CROP := 10 * 12
+
+# Grid Settings
 const SNAP_SIZE := 8.0
 const GRID_SIZE := 16.0
 
+# Item Settings
 const CROP_TYPES : Array[ItemData_Crop] = [
 	preload("res://Resources/Item_Tomato.tres"),
 	preload("res://Resources/Item_Carrot.tres"),
@@ -14,10 +38,15 @@ const CROP_TYPES : Array[ItemData_Crop] = [
 
 const VILLAGER : ItemData = preload("res://Resources/Item_Villager.tres")
 
-const PLOTS : Array[ItemData] = [
-	preload("res://Resources/Item_Plot_2.tres"),
-	preload("res://Resources/Item_Plot_4.tres"),
+# Items given as rewards etc
+const ITEMS : Array[ItemData] = [
+	preload("res://Resources/Item_Plot_3.tres"),
+	preload("res://Resources/Item_Plot_5.tres"),
+	preload("res://Resources/Item_Fence.tres"),
+	preload("res://Resources/Item_Scarecrow.tres")
 ]
+
+# Diety Settings
 
 const GOD_OPTIONS = [
 	"res://Resources/GodData_Corn.tres",

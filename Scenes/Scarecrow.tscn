@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqu6b4rk5fotu"]
+
+[ext_resource type="Script" uid="uid://denww1douhfeh" path="res://Scripts/Placeable_Fence.gd" id="1_1ylap"]
+[ext_resource type="Texture2D" uid="uid://2iej5pgossoq" path="res://Sprites/farm_tilemap_packed_green.png" id="1_yqq1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ylap"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po58c"]
+atlas = ExtResource("1_yqq1c")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fba3g"]
+radius = 44.0
+
+[sub_resource type="Gradient" id="Gradient_1ylap"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6851211, 0.70242214)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_po58c"]
+gradient = SubResource("Gradient_1ylap")
+width = 90
+height = 90
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="Scarecrow" type="Area2D"]
+script = ExtResource("1_1ylap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1ylap")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_po58c")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fba3g")
+
+[node name="Outline" type="Sprite2D" parent="Area2D"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5137255)
+texture_filter = 1
+texture = SubResource("GradientTexture2D_po58c")

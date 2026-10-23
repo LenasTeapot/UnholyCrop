@@ -1,13 +1,7 @@
 @tool
 extends Node
 
-### TODO: Seasons (P0) Done.
-### TODO: Day/Night (P1)
-### TODO: Speed and Slow (P2)
-
 ### Settings
-var day_length := 3.0
-
 var day_timer : Timer
 var current_timescale := 1
 var is_paused := true
@@ -21,7 +15,7 @@ signal day_end
 signal season_end
 signal timescale_changed
 
-var Seasons = []
+var seasons = Globals.SEASONS
 var current_day : int = 1
 var current_season : int = 0
 var current_year : int = 1
@@ -34,16 +28,14 @@ func _ready():
 	game_pause.connect(_on_game_pause)
 	game_play.connect(_on_game_play)
 	# Timer set up
-	day_timer = new_timer(day_length)
+	day_timer = new_timer(Globals.DAY_LENGTH)
 	day_timer.timeout.connect(_on_day_end)
 	
 	set_timescale()
 	loaded.emit()
 	
 func calc_year_length():
-	var y = 0
-	for i in len(Seasons):
-		y += Seasons[0].length
+	var y = Globals.SEASON_LENGTH * len(Globals.SEASONS)
 	return y
 
 func calculate_season():
@@ -55,8 +47,9 @@ func calculate_season():
 		return
 	
 	var day_sum : int = 0
-	for i in len(Seasons):
-		day_sum += Seasons[0].length
+	for i in len(seasons):
+		#day_sum += seasons[0].length
+		day_sum += Globals.SEASON_LENGTH
 		if current_day <= day_sum:
 			if current_season != i:
 				current_season = i
@@ -66,7 +59,7 @@ func calculate_season():
 			return
 			
 func get_current_season():
-	return Seasons[current_season]
+	return seasons[current_season]
 	
 func _on_day_end():
 	print ("Day ", current_day, " is over.")
@@ -119,8 +112,7 @@ func new_timer(duration):
 	timer.wait_time = duration
 	return timer
 
-func load_game(_seasons_in):
-	Seasons = _seasons_in
+func load_game():
 	year_length = calc_year_length()
 	#season_end.emit(get_current_season())
 	change_season()

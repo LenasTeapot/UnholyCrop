@@ -10,7 +10,7 @@ var pickup_offset : Vector2
 var can_be_replaced := true # TODO Make some items placeable only once
 var try_rebake := true
 var hovered := false
-var can_pickup := false
+var can_interact := false
 
 var hold_counter = 0.0
 var hold_time = 0.5
@@ -31,14 +31,14 @@ func _process(delta):
 	if is_held:
 		held()
 	
-	if !can_pickup:
+	if !can_interact:
 		return
-	elif can_pickup and Input.is_action_pressed("select"):
+	elif can_interact and Input.is_action_pressed("select"):
 		hold_counter += delta
 	else:
 		hold_counter = 0.0
 
-	if !is_held and hovered and hold_counter >= hold_time:
+	if !is_held and can_interact and hold_counter >= hold_time:
 		pickup()
 
 
@@ -47,7 +47,7 @@ func _input(event):
 		if is_held:
 			release_hold()
 			return
-		elif hold_counter < hold_time and not has_overlapping_areas() and hovered:
+		elif hold_counter < hold_time and can_interact:
 			single_click()
 			return
 
@@ -57,19 +57,19 @@ func _input(event):
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event.is_action_pressed("select"):
 		set_process_input(true)
-		can_pickup = true
+		can_interact = true
 
 
 func pickup():
 	set_process_input(true)
 	is_held = true
+	Calendar.game_pause.emit()
 	pickup_position = position
 	pickup_offset = pickup_position - get_global_mouse_position()
 	move_to_front()
 
 func held():
 	#While holding, we move it to the mouse position, snapping to grid size
-	Calendar.game_pause.emit() # Move to pickup?
 	var mouse_pos = get_global_mouse_position() + pickup_offset
 	position = snap_pos_to_grid(mouse_pos)
 
@@ -90,7 +90,7 @@ func clear_hold():
 
 func post_hold():
 	set_process_input(false)
-	can_pickup = false
+	can_interact = false
 
 	if not has_been_placed:
 		first_placement()
@@ -115,7 +115,7 @@ func hover_begin():
 	hovered = true
 
 func hover_end():
-	can_pickup = false
+	can_interact = false
 	if Calendar.is_paused:
 		return
 	hovered = false

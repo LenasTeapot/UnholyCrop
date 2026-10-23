@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://wxlye8alr3ov"]
+
+[ext_resource type="Script" uid="uid://bgebp22kahjxl" path="res://Scripts/Location.gd" id="2_eyxth"]
+[ext_resource type="Texture2D" uid="uid://caxe4wpfwonks" path="res://Sprites/Houses.png" id="2_i14ia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyxth"]
+size = Vector2(60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i14ia"]
+atlas = ExtResource("2_i14ia")
+region = Rect2(1, 5, 62, 59)
+
+[node name="Node2D" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 4
+script = ExtResource("2_eyxth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -27.5)
+shape = SubResource("RectangleShape2D_eyxth")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -27.5)
+texture = SubResource("AtlasTexture_i14ia")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(-2, -27.5)
+vertices = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

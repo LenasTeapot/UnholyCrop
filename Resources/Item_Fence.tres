@@ -13,4 +13,5 @@ item_name = "Fence"
 description = "Keeps away pests."
 icon = SubResource("AtlasTexture_xqgv6")
 scene_path = "res://Scenes/Fence.tscn"
+reward_weight = 2
 metadata/_custom_type_script = "uid://bjxdyxdtf6d2a"
